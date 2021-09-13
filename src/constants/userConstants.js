@@ -1,0 +1,1 @@
+export const SET_LOGED_ACTIVE = 'SET_LOGED_ACTIVE'
