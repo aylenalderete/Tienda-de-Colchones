@@ -27,25 +27,35 @@ const AdminView = () => {
     return (
         <Layout searchBar={false}>
             <Slider images={[{src: DashboardImage, title: 'Panel admin'}]} />
-            {Object.keys(sectionHelper).map((key) => (
-                <button onClick={() => setSection(key)}>
-                    {sectionHelper[key].label}
-                </button>
-            ))}
+            <div className="sectionsButtons" style={{display: 'flex', justifyContent: 'space-around'}} >
+                {Object.keys(sectionHelper).map((key) => (
+                    <Card 
+                        img={DashboardImage}
+                        buttons={[
+                            {
+                                label:sectionHelper[key].label,
+                                action:() => setSection(key)
+                            }
+                        ]}
+                    />                
+                ))}
+            </div>
             {section && sectionHelper[section].component}
             {!section && (
-                dummyProducts.map((product) => (
-                    <Card 
-                        title={product.title}
-                        img = {DashboardImage}
-                        description = {product.description}
-                        price = {product.price}
-                        buttons = {[
-                            {label: 'Editar', action: () => editProductHandler(product)},
-                            {label: 'Eliminar', action: () => deleteProductHandler(product)},
-                        ]}
-                    />
-                ))
+                <div className="productsContainer" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    {dummyProducts.map((product) => (
+                        <Card 
+                            title={product.title}
+                            img = {DashboardImage}
+                            description = {product.description}
+                            price = {product.price}
+                            buttons = {[
+                                {label: 'Editar', action: () => editProductHandler(product)},
+                                {label: 'Eliminar', action: () => deleteProductHandler(product)},
+                            ]}
+                        />
+                    ))}
+                </div>
             )}
         </Layout>
     )

@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import '../../styles/GeneralComponents/slider.scss';
 
 const Slider = ({
     images = []
@@ -10,24 +10,28 @@ const Slider = ({
     const prevImg = images[currentImgIndex -1]
     const nextImg = images[currentImgIndex +1]
     return (
-        <div className="sliderContainer">
+        <div className="slider__container">
             {prevImg && (
-                <div className="leftButton">
+                <div className="slider__leftButton">
                     <FaArrowLeft/>
                 </div>
             )}
             {currentImg && (
-                <div className="currentImageContainer">
+                <div className="slider__currentImage--container">
                     {currentImg.title && (
-                        <div className="currentImage--title">
+                        <div className="slider__currentImage--title">
                             {currentImg.title}
                         </div>
                     )}
-                    <img src={currentImg.src} alt={`${currentImg.title} silder background`}/>
+                    <img 
+                        className='slider__currentImage--img' 
+                        src={currentImg.src} 
+                        alt={`${currentImg.title} silder background`}
+                    />
                 </div>
             )}
             {nextImg && (
-                <div className="rightButton">
+                <div className="slider__rightButton">
                     <FaArrowRight />
                 </div>
             )}

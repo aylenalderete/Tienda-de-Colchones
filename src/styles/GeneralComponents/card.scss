@@ -1,0 +1,28 @@
+.card__container{
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    background-color: rgb(243, 243, 243);
+    padding: 25px;
+    border-radius: 25px;
+    margin: 25px;
+    .card__img--container{
+        width: 200px;
+        img{
+            width: 100%;
+        }
+
+    }
+    .card__title--container{
+        
+    }
+    .card__description--container{        
+        
+    }
+    .card__price--container{
+        
+    }
+    .card__buttons--container{
+        
+    }
+}

@@ -1,0 +1,23 @@
+.slider__container{
+    display: flex;
+    width: 100%;
+    .slider__leftButton{
+
+    }
+    .slider__currentImage--container{
+        position: relative;    
+        width: 100%;
+        .slider__currentImage--title{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        .slider__currentImage--img{
+            width: 100%;
+        }
+    }
+    .slider__rightButton{
+
+    }
+}

@@ -4,33 +4,33 @@ const Card = ({
     img = '',
     title = '',
     description = '',
-    price = 0,
+    price = '',
     buttons = []
 }) => {
     return (
-        <div className="cardContainer">
+        <div className="card__container">
             {img && (
-                <div className="imgContainer">
+                <div className="card__img--container">
                     <img src={img}/>
                 </div>
             )}
             {title && (
-                <div className="titleContainer">
+                <div className="card__title--container">
                     <h4>{title}</h4>
                 </div>
             )}
             {description && (
-                <div className="descriptionContainer">
-                    <p>{description}</p>
+                <div className="card__description--container">
+                    <p>{description.slice(0, 50)}{description.length > 50 && '...'}</p>
                 </div>
             )}
             {price && (
-                <div className="priceContainer">
+                <div className="card__price--container">
                     <span>{price}</span>
                 </div>
             )}
             {buttons.length > 0 && (
-                <div className="buttonsContainer">
+                <div className="card__buttons--container">
                     {buttons.map(({label, action}) => (
                         <button onClick={() => action()}>
                             {label}
