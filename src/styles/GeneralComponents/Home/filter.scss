@@ -1,0 +1,93 @@
+.filter-button {
+    border: 1px solid #418fde;
+    color: #418fde;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background-color: #f4f5f5;
+    cursor: pointer;
+}
+
+.filter__container{
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f5f5;
+}
+
+.filter__column {
+    width: 50%;
+    margin: 1% 2%;
+}
+
+.filter__column-button {
+    width: 12%;
+    margin: 1% 2%;
+    display: flex;
+    align-items: center;
+}
+
+.filter__subcontainer-first {
+    text-align: center;
+}
+
+.filter__subcontainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter__container-p {
+    color: #838383;
+    margin-left: 10px;
+}
+
+.filter__column-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter__container-title {
+    color: #418fde;
+}
+
+.filter__number {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #f4f5f5;
+    border: 2px solid #a7a7a7;
+    color: #a7a7a7;
+    text-align: center;
+}
+
+.button {
+    background-color: #418fde;
+    color: #fff;
+    border:none;
+    border-radius: 8px;
+    padding: 8px 25px;
+    cursor: pointer;
+    height: 23%;
+    outline: none;
+}
+
+.button:hover {
+    background-color: #479df3;
+}
+
+.filter-button:hover {
+    background-color: #418fde;
+    color: #f4f5f5;
+}
+
+.filter-button:focus {
+    background-color: #418fde;
+    color: #f4f5f5;
+    outline: none;
+}
+
+.filter-button.active {
+    background-color: #418fde;
+    color: #f4f5f5;
+    outline: none;
+}

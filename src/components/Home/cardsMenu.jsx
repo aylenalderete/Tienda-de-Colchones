@@ -1,0 +1,31 @@
+import React from 'react'
+import colchon1 from "../../assets/colchon1.png"
+import "../../styles/GeneralComponents/Home/cardsmenu.scss"
+
+
+function CardsMenu() {
+    return (
+        <section className="section-container">
+            <div className="card-column">
+                <div className="container-column-img">
+                    <img className="column-img" src={colchon1} />
+                </div>
+                <div className="container-column-text">
+                    <p>La mejor tecnología: Colchones Fisher</p>
+                    <button className="button">Ver más</button>
+                </div>
+            </div>
+            <div className="card-column">
+                <div className="container-column-img">
+                    <img className="column-img" src={colchon1} />
+                </div>
+                <div className="container-column-text">
+                    <p>Colchones de goma espuma</p>
+                    <button className="button">Ver más</button>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default CardsMenu

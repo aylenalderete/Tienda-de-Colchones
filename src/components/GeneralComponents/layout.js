@@ -30,7 +30,7 @@ const Layout = ({
                             <ul><Link to='/productos'>Productos</Link></ul>
                         </li>
                         <li>
-                            <ul><Link to='/nosotros'>Nosotros</Link></ul>
+                            <ul><Link to='/ContactoMayorista'>Contacto mayorista</Link></ul>
                         </li>
                         <li>
                             <ul><Link to='/admin'>Admin</Link></ul>
@@ -59,8 +59,8 @@ const Layout = ({
                     <Link to='/productos'>
                         Productos
                     </Link>
-                    <Link to='/nosotros'>
-                        Nosotros
+                    <Link to='/ContactoMayorista'>
+                        Contacto mayorista
                     </Link>
                 </div>
                 <div className="layout__footer--socialIcons">

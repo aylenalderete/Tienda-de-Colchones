@@ -1,0 +1,45 @@
+.section-container {
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.card-column {
+    display: flex;
+    flex-direction: row;
+    height: 70%;
+    width: 35%;
+    justify-content: center;
+    background-color: #f4f5f5;
+    border-radius: 8px;
+    margin-top: 4%
+}
+
+.container-column-img {
+    width: 60%;
+}
+
+.column-img {
+    height: 100%;
+}
+
+.container-column-text {
+    width: 28%;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button {
+    background-color: #418fde;
+    color: #f4f5f5;
+    border:none;
+    border-radius: 12px;
+    padding: 6px 25px;
+    cursor: pointer;
+    height: 15%;
+    outline: none;
+
+}
