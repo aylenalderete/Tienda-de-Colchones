@@ -1,27 +1,10 @@
 .layout__main{
     width: 100%;
     height: 100%;
-    .layout__header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0% 3%;
-        height: 80px;
-        .layout__header--iconContainer{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            img{
-                width: 40%;
-            }
-        }
-        .layout__header--navContainer{
-            display: flex;
-            list-style-type: none;            
-        }
+        
         .layout__header--SearchBarContainer{
             input{
-                height: 40px;
+                height: 33px;
                 padding: 0 15px;
                 width: 250px;
                 border-radius: 5px;
@@ -31,7 +14,6 @@
                 }
             }
         }
-    }
     .layout__footer {
         height: 80px;
         background-color: rgb(24, 24, 24);
@@ -52,5 +34,67 @@
         .layout__footer--socialIcons{
             width: 10%;
         }
+    }
+}
+
+.layout__header--navContainer ul {
+    padding: 0;
+    margin-right: 30px;
+}
+
+
+@media only screen and (max-width: 2560px) {
+
+    .layout__header--navContainer{
+        display: flex;
+        list-style-type: none;            
+    }
+
+    .layout__header--navContainer li {
+        font-size: 13px;
+    }
+
+    .layout__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0% 3%;
+        height: 80px;
+        .layout__header--iconContainer{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 25%;
+            img{
+                width: 40%;
+            }
+        }
+    }
+
+    .menu-btn {
+        display: none;
+      }
+}
+
+@media only screen and (max-width: 768px) {
+    .layout__header--navContainer {
+        display: none;
+    }
+
+    .layout__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu-btn {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        height: 60%;
+        width: 7%;
+      }
+    
+    .menu-btn img {
+        width: 100%;
     }
 }

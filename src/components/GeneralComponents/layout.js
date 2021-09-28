@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
 import SuaveStarIcon from '../../assets/suavestarIcon.png'
+import hamburguerMenu from "../../assets/hamburguerMenu.png"
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
 
@@ -12,6 +13,8 @@ const Layout = ({
     footer = true
 }) => {
     const [inputValue, setInputValue] = useState('')
+
+    const [hamburguerActive, sethamburguerActive] = useState(false)
 
     return (
         <main className="layout__main">
@@ -47,6 +50,13 @@ const Layout = ({
                         />
                     </div>
                 )}
+                {
+
+                    <div className="menu-btn">
+                        <img src={hamburguerMenu} onClick={()=>sethamburguerActive(true)} className="menu-btn__burger"></img>
+                    </div>
+
+                }
             </header>
             <section className='layout__section'>
                 {children}

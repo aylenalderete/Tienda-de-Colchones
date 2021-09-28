@@ -43,3 +43,45 @@
     outline: none;
 
 }
+
+@media only screen and (max-width: 1024px) {
+    .card-column {
+        height: 55%;
+        width: 37%;
+    }
+
+    .container-column-img {
+        height: 90%;
+    }
+
+    .button {
+        height: 19%;
+        margin-bottom: 10px;
+        width: 95px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card-column {
+        width: 45%;
+    }
+
+    .container-column-img {
+        height: 75%;
+    }
+
+    .button {
+        width: 95px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .container-column-img {
+        height: 70%;
+        width: 48%;
+    }
+
+    .container-column-text {
+        font-size: 15px;
+    }
+}
