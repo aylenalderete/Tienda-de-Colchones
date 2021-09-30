@@ -1,0 +1,48 @@
+.product-section-container {
+    display: flex;
+    margin-top: 3%
+}
+
+.filters-container {
+    width: 20%;
+}
+
+.filters-container input {
+    background-color: #eeeeee;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    height: 33px;
+    margin: 10px;
+    padding: 0px 15px 0px 15px;
+}
+
+.filters-container p {
+    margin: 10px;
+    color: rgb(59, 59, 59);
+}
+
+.filters-container input:focus {
+    outline: none;
+}
+
+.filters-container select {
+    background-color: #eeeeee;
+    color: rgb(58, 58, 58);
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    height: 33px;
+    margin: 10px;
+    padding: 0px 15px 0px 15px;
+}
+
+.filters-container select:focus {
+    outline: none;
+}
+
+.products-container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
