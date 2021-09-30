@@ -1,6 +1,6 @@
 import React from 'react'
 import colchon1 from "../../assets/colchon1.png"
-import "../../styles/GeneralComponents/Home/cardsmenu.scss"
+import "../../styles/Home/cardsmenu.scss"
 
 
 function CardsMenu() {

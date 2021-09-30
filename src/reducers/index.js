@@ -1,8 +1,10 @@
 import { combineReducers } from "redux"
 import user from './userReducers'
+import products from './productsReducer'
 
 const appReducer = combineReducers({ 
-    user
+    user,
+    products
 })
 
 const rootReducer = (state, action) => {

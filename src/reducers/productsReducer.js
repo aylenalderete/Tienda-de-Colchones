@@ -1,15 +1,15 @@
-import { SET_LOGED_ACTIVE } from "../../constants/userConstants";
+import { SET_ALL_PRODUCTS } from "../constants/productConstans";
 
 const userReducerInitialState = {
-    currentUser: {}
+    allProducts: []
 }
 
 const userReducers = (state = userReducerInitialState, {type, payload}) => {
     switch (type) {
-        case SET_LOGED_ACTIVE:
+        case SET_ALL_PRODUCTS:
             return {
                 ...state,
-                currentUser: payload
+                allProducts: payload
             }
         default:
             return state

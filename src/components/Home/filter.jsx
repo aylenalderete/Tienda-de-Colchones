@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/GeneralComponents/Home/filter.scss'
+import '../../styles/Home/filter.scss'
 
 function Filter() {
     const [filterActive, setfilterActive] = useState([])

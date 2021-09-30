@@ -90,3 +90,15 @@ const Layout = ({
 }
 
 export default Layout;
+
+export const Grid = ({
+    children,
+    height = '22rem',
+    width = '25rem'
+}) => {
+    return (
+        <div className="grid__container" >
+            {children}
+        </div>
+    )
+}

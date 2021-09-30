@@ -1,14 +1,15 @@
 import React from 'react'
 import Layout from "../GeneralComponents/layout";
 import Sliderprueba from '../GeneralComponents/sliderprueba';
+import ProductsList from './productsList';
 
 function Products() {
     return (
         <Layout>
-            <div>
+            <>
                 <Sliderprueba />
-                
-            </div>
+                <ProductsList />
+            </>
         </Layout>
     )
 }
