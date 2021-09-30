@@ -1,5 +1,5 @@
 import sliderprueba from "../../assets/sliderprueba.jpg"
-import "../../styles/GeneralComponents/Home/sliderprueba.scss"
+import "../../styles/Home/sliderprueba.scss"
 
 function Sliderprueba() {
     return (

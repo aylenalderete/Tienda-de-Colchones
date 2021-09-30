@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Layout from "../GeneralComponents/layout";
+import { useEffect, useState } from "react";
+import Layout, { Grid } from "../GeneralComponents/layout";
 import DashboardImage from '../../assets/adminSlider.png'
 import Slider from "../GeneralComponents/slider";
 import CreateProduct from "./createProduct";
@@ -7,9 +7,20 @@ import EditProduct from "./editProduct";
 import DeleteProduct from "./deleteProduct";
 import { dummyProducts } from "../../constants/dummyData";
 import Card from "../GeneralComponents/card";
+import { getAllProducts } from "../../database/product";
+import { useDispatch } from "react-redux";
+import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
+import { useSelector } from "react-redux";
 
 const AdminView = () => {
     const [section, setSection] = useState();
+    const dispatch = useDispatch()
+    const {allProducts} = useSelector(state => state.products)
+
+    useEffect(() => {
+        getAllProducts()
+        .then((prods) => dispatch({type: SET_ALL_PRODUCTS, payload: prods}))
+    }, [])
 
     const sectionHelper = {
         'create':{label: 'Crear producto', component: <CreateProduct />},
@@ -27,7 +38,7 @@ const AdminView = () => {
     return (
         <Layout searchBar={false}>
             <Slider images={[{src: DashboardImage, title: 'Panel admin'}]} />
-            <div className="sectionsButtons" style={{display: 'flex', justifyContent: 'space-around'}} >
+            <Grid>
                 {Object.keys(sectionHelper).map((key) => (
                     <Card 
                         img={DashboardImage}
@@ -39,23 +50,23 @@ const AdminView = () => {
                         ]}
                     />                
                 ))}
-            </div>
+            </Grid>
             {section && sectionHelper[section].component}
             {!section && (
-                <div className="productsContainer" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-                    {dummyProducts.map((product) => (
+                <Grid>
+                    {allProducts.map((product) => (
                         <Card 
-                            title={product.title}
+                            title={product.nombre}
                             img = {DashboardImage}
-                            description = {product.description}
-                            price = {product.price}
+                            description = {product.descripcion}
+                            price = {product.precio}
                             buttons = {[
                                 {label: 'Editar', action: () => editProductHandler(product)},
                                 {label: 'Eliminar', action: () => deleteProductHandler(product)},
                             ]}
                         />
                     ))}
-                </div>
+                </Grid>
             )}
         </Layout>
     )
