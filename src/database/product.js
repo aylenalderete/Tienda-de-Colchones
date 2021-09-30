@@ -1,4 +1,4 @@
-import { createDocument, deleteDocument, getCollection, getDocId, updateDocument } from "."
+import { createDocument, deleteDocument, getCollection, getDocId, getDocument, updateDocument } from "."
 import { store } from "../store"
 
 export const createProductDB = async (data) => {
@@ -39,6 +39,18 @@ export const getAllProducts = async () => {
             products = await getCollection('products')
         }
         return products
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export const getProduct = async (id) => {
+    try {
+        let product = (store.getState()?.products?.allProducts.find(el => el.doc_id === id))
+        if(!product){
+            product = await getDocument(`products/${id}`)
+        }
+        return product
     } catch (err) {
         console.error(err)
     }
