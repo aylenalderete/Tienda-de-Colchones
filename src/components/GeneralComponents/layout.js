@@ -93,11 +93,17 @@ export default Layout;
 
 export const Grid = ({
     children,
-    height = '22rem',
-    width = '25rem'
+    height = '18rem',
+    width = '17rem'
 }) => {
+
+    const styles = {
+        gridAutoRows: height,
+        gridTemplateColumns: `repeat(auto-fill, minmax(min(100%, ${width}), 1fr))`
+    }
+
     return (
-        <div className="grid__container" >
+        <div className="grid__container" style={styles} >
             {children}
         </div>
     )
