@@ -20,7 +20,7 @@ function CardsMenu() {
                     <img className="column-img" src={colchon1} />
                 </div>
                 <div className="container-column-text">
-                    <p>Colchones de goma espuma</p>
+                    <p>¿Queres vender nuestros productos?</p>
                     <button className="button">Ver más</button>
                 </div>
             </div>

@@ -33,7 +33,6 @@ function Filter() {
         {label:'60kg', value: "60kg"},
         {label:'75kg', value: "75kg"},
         {label:'90kg', value: "90kg"},
-        {label:'75kg', value: "75kg"},
         {label:'100kg', value: "100kg"},
         {label:'110kg', value: "110kg"},
         {label:'120kg', value: "120kg"},

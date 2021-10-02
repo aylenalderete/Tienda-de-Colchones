@@ -11,9 +11,10 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/product/:doc_id'> <Product></Product> </Route>
         <Route exact path='/' component={Home} />
         <Route exact path='/productos' component={Products} />
-        <Route exact path='/contacto-mayorista' component={Mayoristas} />
+        <Route exact path='/ContactoMayorista' component={Mayoristas} />
         <Route exact path='/admin' component={AdminView} />
         <Route exact path='/producto' component={Product} />
       </Switch>
