@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import {FaArrowLeft, FaArrowRight} from 'react-icons/fa'
 import '../../styles/GeneralComponents/slider.scss';
 
 const Slider = ({
@@ -13,7 +13,7 @@ const Slider = ({
         <div className="slider__container">
             {prevImg && (
                 <div className="slider__leftButton">
-                    <FaArrowLeft/>
+                    <FaArrowLeft />
                 </div>
             )}
             {currentImg && (

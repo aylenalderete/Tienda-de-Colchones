@@ -22,7 +22,7 @@
     width: 20%;
 }
 
-.input-container input {
+.input-container input, textarea {
     background-color: #eeeeee;
     font-weight: 600;
     border: none;
@@ -31,8 +31,12 @@
     margin: 10px;
     padding: 0px 15px 0px 15px;
 }
+ textarea {
+     padding-top: 5px;
+     height: auto;
+ }
 
-.input-container input:focus {
+.input-container input:focus, textarea {
     outline: none;
 }
 
@@ -48,4 +52,32 @@
 
 .input-container select:focus {
     outline: none;
+}
+
+.input-container{
+    .select__container{
+        .select__items-selected{
+            display: flex;
+            flex-wrap: wrap;
+            span {
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+                margin-right: 5px;
+                background-color: rgb(158, 158, 173);
+                border-radius: 10px;
+                padding: 5px;
+                color: white;
+                svg{
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.variant__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
