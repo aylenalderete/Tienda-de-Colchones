@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import Layout, { Grid } from "../GeneralComponents/layout";
-import DashboardImage from '../../assets/adminSlider.png'
 import adminSlider from '../../assets/adminSlider.png'
 import image33 from "../../assets/image 33.png"
-import CreateProduct from "./createProduct";
-import EditProduct from "./editProduct";
+import ProductForm from "./createProduct";
 import DeleteProduct from "./deleteProduct";
 import Card from "../GeneralComponents/card";
-import { getAllProducts } from "../../database/product";
+import { deleteProduct, getAllProducts } from "../../database/product";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
-import { Link } from 'react-router-dom'
+import Swal from "sweetalert2";
+import { useHistory, useLocation } from "react-router";
+import queryString from 'query-string';
 
 const AdminView = () => {
-    const [section, setSection] = useState();
-    const dispatch = useDispatch()
     const {allProducts} = useSelector(state => state.products)
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const location = useLocation()
+    const {section} = queryString.parse(location.search)
 
     useEffect(() => {
         getAllProducts()
@@ -23,16 +25,29 @@ const AdminView = () => {
     }, [])
 
     const sectionHelper = {
-        'create':{label: 'Crear producto', component: <CreateProduct />},
-        'edit':{label: 'Editar producto', component: <EditProduct />},
+        'create':{label: 'Crear producto', component: <ProductForm />},
+        'edit':{label: 'Editar producto', component: <ProductForm/>},
         'delete':{label: 'Borrar producto', component: <DeleteProduct />}
     }
 
     const editProductHandler = (productData) => {
-        console.log(productData)
+        history.push(`?section=edit&productId=${productData.doc_id}`)        
     }
-    const deleteProductHandler = (productData) => {
-        console.log(productData)
+
+    const deleteProductHandler = async ({doc_id, nombre}) => {
+        const res = await Swal.fire({
+            title: `¿Desea eliminar "${nombre}"?`,
+            icon: 'question',
+            showCancelButton: true,
+            showConfirmButton: true
+        })
+        if(res.isConfirmed){
+            Swal.fire('Eliminando')
+            Swal.showLoading()
+            await deleteProduct(doc_id)
+            Swal.hideLoading()
+            Swal.close()
+        }
     }
 
     return (
@@ -45,10 +60,10 @@ const AdminView = () => {
             <>
             <Grid height="6rem" width="9rem">
                 <Card 
-                            title = 'Volver'
-                            style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
-                            cardAction={() => setSection('create')}
-                        />
+                    title = 'Volver'
+                    style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
+                    cardAction={() => history.push('?')}
+                />
             </Grid>
             </>
             )}
@@ -61,7 +76,7 @@ const AdminView = () => {
                                 img={image33}
                                 title = 'Crear producto'
                                 style={{display:'flex', flexDirection: 'row'}}
-                                cardAction={() => setSection('create')}
+                                cardAction={() =>  history.push(`?section=create`)}
                             />          
                         {/* ))} */}
                     </Grid>

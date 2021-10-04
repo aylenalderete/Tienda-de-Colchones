@@ -1,36 +1,43 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../../styles/GeneralComponents/adminforms.scss"
-import { createProductDB } from "../../database/product"
+import { createProductDB, getProduct, updateProductDB } from "../../database/product"
 import {FaTimesCircle, FaUpload} from 'react-icons/fa'
 import {Grid} from '../GeneralComponents/layout'
 import Swal from "sweetalert2"
+import { useHistory, useLocation } from "react-router"
+import queryString from 'query-string';
 
 const productInitialState = {
     nombre: '',
     descripcion: '',
     images: [],
-    peso: [],
-    sensacion: [],
+    peso: '',
+    sensacion: '',
     variants: []
 }
 
-const CreateProduct = () => {
+const ProductForm = () => {
     const [productData, setproductData] = useState(productInitialState)
     const [imagesPreview, setImagesPreview] = useState([])
     const [variant, setVariant] = useState({price: '', size: ''})
+    const history = useHistory()
+    const location = useLocation()
+    const {productId, section} = queryString.parse(location.search)
+
+    useEffect(() => {
+        if(productId){
+            getProduct(productId)
+            .then((data) => {
+                setproductData(data)
+                setImagesPreview(data.images)
+            })
+        }
+    },[productId]) 
 
     const handleInputChange = (e) => {
         setproductData({...productData, [e.target.name] : e.target.value})
     }
     const handleVariantChange = ({target:{value, name}}) => setVariant({...variant, [name]: value})
-
-    // const handleSelectChange = ({target: {name, value}}) => {
-    //     if(productData[name].includes(value)){
-    //         setproductData({...productData, [name]: productData[name].filter((el) => el !== value)})
-    //     } else {
-    //         setproductData({...productData, [name]: [...productData[name], value]})
-    //     }
-    // }
 
     const handleAddVariant = () => {
         if(!variant.price || !variant.size) return alert('agrega el precio y el tamaño')
@@ -59,11 +66,20 @@ const CreateProduct = () => {
             e.preventDefault()
             await createProductDB(productData)
             Swal.fire('Producto creado!', '', 'success')
-            // setproductData(productInitialState)
         } catch (err) {
             
         }
     }    
+
+    const updateData = async (e) => {
+        try {
+            e.preventDefault()
+            await updateProductDB(productId, productData)
+            Swal.fire('Producto creado!', '', 'success')
+        } catch (err) {            
+            console.error(err)
+        }
+    }
 
     const selectsHelper = [
         {
@@ -84,21 +100,22 @@ const CreateProduct = () => {
          items: ["1 plaza", "1 plaza y media", "2 plazas", "2 plazas y media"]
      }
 
-
+     console.log(productData)
     return (
-        <form onSubmit={sendData} className="product--container">
+        <form onSubmit={section === 'create' ? sendData : updateData} className="product--container">
             <div>
-                <h2>Crear producto</h2>
+                <h2>{section === 'create' ? 'Crear producto' : 'Editar producto'}</h2>
             </div>
             <Grid className={'form-container'} >
                 <div className='create_product--section' >
-                    <input autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
-                    <textarea autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
+                    <input value={productData['nombre']} autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
+                    <textarea value={productData['descripcion']} autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
                 </div>
                 <div className='create_product--section'>
                     {selectsHelper.map(({items, label, name}) => (
                         <div className='select__container' >
                             <p>{label}</p>
+                            {console.log(productData[name])}
                             <select value={productData[name]} onChange={handleInputChange} name={name}>
                                 <option value='' disabled>seleccione una opcion</option>
                                 {items.map((item) => (
@@ -147,10 +164,10 @@ const CreateProduct = () => {
                 </div>
             </Grid>
             <div>
-                <button type="submit" className="button">Crear producto</button>
+                <button type="submit" className="button">{section === 'create' ? 'Crear producto' : 'Editar producto'}</button>
             </div>
         </form>
     )
 }
 
-export default CreateProduct
+export default ProductForm

@@ -1,4 +1,4 @@
-import { SET_ALL_PRODUCTS } from "../constants/productConstans";
+import { DELETE_PRODUCT, SET_ALL_PRODUCTS, UPDATE_PRODUCT } from "../constants/productConstans";
 
 const userReducerInitialState = {
     allProducts: []
@@ -10,6 +10,16 @@ const userReducers = (state = userReducerInitialState, {type, payload}) => {
             return {
                 ...state,
                 allProducts: payload
+            }
+        case UPDATE_PRODUCT:
+            return {
+                ...state,
+                allProducts: state.allProducts.map((el) => el.doc_id === payload.doc_id ? {...el, ...payload} : el)
+            }
+        case DELETE_PRODUCT:
+            return {
+                ...state,
+                allProducts: state.allProducts.filter((el) => el.doc_id !== payload)
             }
         default:
             return state

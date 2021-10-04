@@ -96,6 +96,8 @@ export const Grid = ({
     children,
     height = '18rem',
     width = '17rem',
+    align = 'center',
+    spacing = 'center',
     className=''
 }) => {
 
@@ -104,20 +106,14 @@ export const Grid = ({
         gridGap: '1rem',
         gap: '1rem',
         width: 'auto',
+        justifyItems: spacing,
+        alignItems: align,
         gridAutoRows: height,
         gridTemplateColumns: `repeat(auto-fill, minmax(min(100%, ${width}), 1fr))`
     }
 
     return (
-        <div className={`grid__container ${className}`} style={styles} >
-            {children}
-        </div>
-    )
-}
-
-export const column = ({children, className='', aling='center'}) =>{
-    return (
-        <div className={`${className}`} style={{width: 'auto', display: 'flex', flexDirection: 'column', flexWrap:'wrap', alignItems: aling}} >
+        <div className={`grid__container ${className}`} style={styles} >            
             {children}
         </div>
     )

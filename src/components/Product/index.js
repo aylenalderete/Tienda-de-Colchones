@@ -19,7 +19,7 @@ const productInitialState = {
 function Product() {
     const [productData, setproductData] = useState(productInitialState)
     const [product, setproduct] = useState([])
-    
+    const [loading, setLoading] = useState(true)
     const {doc_id} = useParams()
 
     useEffect(() => {
@@ -32,10 +32,15 @@ function Product() {
 
     const obtenerDatos = async() => {
         const productSelected = await getProduct(doc_id)
-        console.log(productSelected)
         setproduct(productSelected)
+        setLoading(false)
     }
 
+    if(loading){
+        return (
+            <h3>cargando...</h3>
+        )
+    }
 
     return (
         <Layout>
