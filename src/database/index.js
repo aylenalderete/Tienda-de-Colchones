@@ -1,4 +1,4 @@
-import { db } from "../config/firebase";
+import { db, storage } from "../config/firebase";
 import { web_id } from "../constants/APP";
 
 const normalizePath = (path) => {
@@ -14,7 +14,7 @@ const normalizePath = (path) => {
 export const createDocument = async (path, data) => {
     try {
         if(!data) throw 'Pls enviame la data'
-        await db.doc(normalizePath(path)).set(data)
+        await db.doc(path).set(data)
     } catch (err) {
         alert('Error al crear')
         console.error(err)
@@ -40,6 +40,7 @@ export const deleteDocument = async (path) => {
     }
 }
 
+
 export const getDocument = async (path) => {
     try {
         return (await db.doc(normalizePath(path)).get()).data()
@@ -60,6 +61,18 @@ export const getCollection = async (path) => {
 
 export const getDocId = (collectionPath) => {
     collectionPath = normalizePath(collectionPath)
+    console.log(db)
     const id =  db.collection(collectionPath).doc().id
     return {id, collectionPath}
+}
+
+//storage
+export async function putFileFB(file, fileName){
+	try {
+		const res = await storage.child(normalizePath(fileName)).put(file)
+		return await res.ref.getDownloadURL()
+	} catch (error) {
+		//console.error(error)
+		return error;
+	}
 }

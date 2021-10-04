@@ -1,83 +1,70 @@
-.button {
-    background-color: #418fde;
-    color: #f4f5f5;
-    border:none;
-    border-radius: 12px;
-    padding: 7px 23px;
-    cursor: pointer;
-    outline: none;
-    margin-top: 10px
-}
 
 .product--container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 25px
-}
-
-.input-container {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-}
-
-.input-container input, textarea {
-    background-color: #eeeeee;
-    font-weight: 600;
-    border: none;
-    border-radius: 15px;
-    height: 33px;
-    margin: 10px;
-    padding: 0px 15px 0px 15px;
-}
- textarea {
-     padding-top: 5px;
-     height: auto;
- }
-
-.input-container input:focus, textarea {
-    outline: none;
-}
-
-.input-container select {
-    background-color: #eeeeee;
-    font-weight: 600;
-    border: none;
-    border-radius: 15px;
-    height: 33px;
-    margin: 10px;
-    padding: 0px 15px 0px 15px;
-}
-
-.input-container select:focus {
-    outline: none;
-}
-
-.input-container{
-    .select__container{
-        .select__items-selected{
+    margin-bottom: 25px;
+    .form-container{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        .create_product--section{
             display: flex;
-            flex-wrap: wrap;
-            span {
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            input, select, textarea{
+                background-color: #eeeeee;
+                font-weight: 600;
+                border: none;
+                border-radius: 15px;
+                height: 33px;
+                margin: 10px;
+                padding: 0px 15px 0px 15px;
+                &:focus{
+                    outline: none;
+                }
+            }
+            textarea {
+                padding-top: 5px;
+                height: auto;
+            }
+            input[type="file"]{
+                display: none;
+            }
+            .variant__form{
                 display: flex;
-                cursor: pointer;
+                flex-direction: column;
                 align-items: center;
-                margin-right: 5px;
-                background-color: rgb(158, 158, 173);
-                border-radius: 10px;
-                padding: 5px;
-                color: white;
-                svg{
-                    margin-left: 5px;
+                h5{
+                    margin-top: 0;
+                }
+                .variants__items{
+                    display: flex;
+                    flex-wrap: wrap;
+                    span {
+                        display: flex;
+                        cursor: pointer;
+                        align-items: center;
+                        margin-right: 5px;
+                        background-color: rgb(158, 158, 173);
+                        border-radius: 10px;
+                        padding: 5px;
+                        color: white;
+                        svg{
+                            margin-left: 5px;
+                        }
+                    }
                 }
             }
         }
     }
-}
-
-.variant__container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .button {
+        background-color: #418fde;
+        color: #f4f5f5;
+        border:none;
+        border-radius: 12px;
+        padding: 7px 23px;
+        cursor: pointer;
+        outline: none;
+        height: auto;
+        margin-top: 10px
+    }
 }

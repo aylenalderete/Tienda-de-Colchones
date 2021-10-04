@@ -1,13 +1,14 @@
 import { useState } from "react"
 import "../../styles/GeneralComponents/adminforms.scss"
 import { createProductDB } from "../../database/product"
-import {FaTimesCircle} from 'react-icons/fa'
+import {FaTimesCircle, FaUpload} from 'react-icons/fa'
+import {Grid} from '../GeneralComponents/layout'
+import Swal from "sweetalert2"
 
 const productInitialState = {
     nombre: '',
     descripcion: '',
-    imagen: [],
-    medida: [],
+    images: [],
     peso: [],
     sensacion: [],
     variants: []
@@ -15,11 +16,13 @@ const productInitialState = {
 
 const CreateProduct = () => {
     const [productData, setproductData] = useState(productInitialState)
-    const [variant, setVariant] = useState(false)
+    const [imagesPreview, setImagesPreview] = useState([])
+    const [variant, setVariant] = useState({price: '', size: ''})
 
     const handleInputChange = (e) => {
         setproductData({...productData, [e.target.name] : e.target.value})
     }
+    const handleVariantChange = ({target:{value, name}}) => setVariant({...variant, [name]: value})
 
     // const handleSelectChange = ({target: {name, value}}) => {
     //     if(productData[name].includes(value)){
@@ -29,13 +32,37 @@ const CreateProduct = () => {
     //     }
     // }
 
-    const sendData = (e) => {
-        e.preventDefault()
-        createProductDB(productData)
-        .then(() => {
-            alert('Producto creado!')
-            setproductData(productInitialState)
-        })
+    const handleAddVariant = () => {
+        if(!variant.price || !variant.size) return alert('agrega el precio y el tamaño')
+        setproductData({...productData, variants: [...productData.variants, variant]})
+        setVariant({price: '', size: ''})
+    }
+
+    const handleRemoveVariant = (i) => {
+        let temp = [...productData.variants]
+        temp.splice(i, 1)
+        setproductData({...productData, variants: temp})
+    }
+
+    const handleUploadImages = ({target: {files}}) => {
+        const fileUrls = []
+        for (let index = 0; index < files.length; index++) {
+            const file = files.item(index);
+            fileUrls.push(URL.createObjectURL(file))
+        }
+        setproductData({...productData, images: files})
+        setImagesPreview(fileUrls)
+    }
+
+    const sendData = async  (e) => {
+        try {
+            e.preventDefault()
+            await createProductDB(productData)
+            Swal.fire('Producto creado!', '', 'success')
+            // setproductData(productInitialState)
+        } catch (err) {
+            
+        }
     }    
 
     const selectsHelper = [
@@ -57,39 +84,68 @@ const CreateProduct = () => {
          items: ["1 plaza", "1 plaza y media", "2 plazas", "2 plazas y media"]
      }
 
+
     return (
         <form onSubmit={sendData} className="product--container">
             <div>
                 <h2>Crear producto</h2>
             </div>
-            <div className="input-container">
-                <input autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
-                <textarea autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
-                {selectsHelper.map(({items, label, name}) => (
-                    <div className='select__container' >
-                        <p>{label}</p>
-                        <select value={productData[name]} onChange={handleInputChange} name={name}>
+            <Grid className={'form-container'} >
+                <div className='create_product--section' >
+                    <input autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
+                    <textarea autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
+                </div>
+                <div className='create_product--section'>
+                    {selectsHelper.map(({items, label, name}) => (
+                        <div className='select__container' >
+                            <p>{label}</p>
+                            <select value={productData[name]} onChange={handleInputChange} name={name}>
+                                <option value='' disabled>seleccione una opcion</option>
+                                {items.map((item) => (
+                                    <option value={item}>{item}</option>
+                                ))}
+                            </select>                       
+                        </div>
+                    ))}
+                </div>
+                <div className='create_product--section' >
+                    <label>
+                        Subir imagenes
+                        <FaUpload />
+                        <input multiple={true} onChange={handleUploadImages} type="file"/>
+                    </label>
+                    <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                        {imagesPreview.map((src) => (
+                            <div className="image">
+                                <img src={src} style={{margin: '5px'}} width={100} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="create_product--section">
+                    <div className="variant__form">
+                        <h5>Variantes</h5>
+                        <div className="variants__items">
+                        {productData.variants.map(({size, price }, i) => (
+                            <>
+                                <span onClick={() => handleRemoveVariant(i)}>
+                                    {size} - ${price}<FaTimesCircle />
+                                </span>
+                            </>
+                        ))}
+                        </div>
+                        <p>{variantSelect.label}</p>
+                        <select name='size' value={variant.size} onChange={handleVariantChange}>
                             <option value='' disabled>seleccione una opcion</option>
-                            {items.map((item) => (
+                            {variantSelect.items.map((item) => (
                                 <option value={item}>{item}</option>
                             ))}
-                        </select>                       
+                        </select> 
+                        <input autoComplete='off' value={variant.price} type='number' name="price" onChange={handleVariantChange} placeholder="Precio"></input>                
+                        <button type='button' className='button' onClick={handleAddVariant}>Añadir variante</button>                    
                     </div>
-                ))}
-                <input autoComplete='off' name="image" multiple='true' onChange={handleInputChange} type="file" name="imagen"/>
-                <div className="variant__container">
-                    <h5>Vatiantes</h5>
-                    <p>{variantSelect.label}</p>
-                    <select onChange={() => handleInputChange(productData.variants.length)}>
-                        <option value='' disabled>seleccione una opcion</option>
-                        {variantSelect.items.map((item) => (
-                            <option value={item}>{item}</option>
-                        ))}
-                    </select> 
-                    <input autoComplete='off' type='number' name="precio" onChange={handleInputChange} placeholder="Precio"></input>                
-                    <button type='button' className='button' onClick={() => setVariant(true)}>Añadir variante</button>
                 </div>
-            </div>
+            </Grid>
             <div>
                 <button type="submit" className="button">Crear producto</button>
             </div>
