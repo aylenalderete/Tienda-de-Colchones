@@ -1,11 +1,20 @@
-.container-info {
-    width: 40%; 
-    display: flex; 
-    text-align: center; 
-    justify-content: center; 
-    border-radius: 12px; 
-    padding: 2% 4%; 
-    margin: 6% 26%; 
-    flex-direction: column; 
-    background-color: #f3f3f3;
+.mayoristas-section {
+    background-image: url(".././assets/fondoestrellas.jpg");
+    height: 630px;
+    position: relative;
+
+    .container-info {
+        width: 40%; 
+        display: flex; 
+        text-align: center; 
+        justify-content: center; 
+        border-radius: 12px; 
+        padding: 2% 4%; 
+        flex-direction: column; 
+        background-color: #f3f3f3;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+    }
 }

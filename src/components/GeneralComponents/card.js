@@ -5,13 +5,15 @@ const Card = ({
     title = '',
     description = '',
     price = '',
+    style = {},
+    cardAction = () => {},
     buttons = []
 }) => {
     return (
-        <div className="card__container">
+        <div className="card__container" style={style} onClick={cardAction}>
             {img && (
                 <div className="card__img--container">
-                    <img src={img}/>
+                    <img src={img} alt='Imagen'/>
                 </div>
             )}
             {title && (
@@ -26,13 +28,13 @@ const Card = ({
             )}
             {price && (
                 <div className="card__price--container">
-                    <span>{price}</span>
+                    <span>${price}</span>
                 </div>
             )}
             {buttons.length > 0 && (
                 <div className="card__buttons--container">
                     {buttons.map(({label, action}) => (
-                        <button onClick={() => action()}>
+                        <button className="card__buttons" onClick={() => action()}>
                             {label}
                         </button>
                     ))}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
 import SuaveStarIcon from '../../assets/suavestarIcon.png'
+import { HiMenu } from 'react-icons/hi'
 import hamburguerMenu from "../../assets/hamburguerMenu.png"
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
@@ -27,16 +28,16 @@ const Layout = ({
                 {nav && (
                     <nav className="layout__header--navContainer">
                         <li>
-                            <ul><Link to='/'>Inicio</Link></ul>
+                            <ul className="layout__header--navContainer_ul"><Link to='/'>Inicio</Link></ul>
                         </li>
                         <li>
-                            <ul><Link to='/productos'>Productos</Link></ul>
+                            <ul className="layout__header--navContainer_ul"><Link to='/productos'>Productos</Link></ul>
                         </li>
                         <li>
-                            <ul><Link to='/ContactoMayorista'>Contacto mayorista</Link></ul>
+                            <ul className="layout__header--navContainer_ul"><Link to='/ContactoMayorista'>Contacto mayorista</Link></ul>
                         </li>
                         <li>
-                            <ul><Link to='/admin'>Admin</Link></ul>
+                            <ul className="layout__header--navContainer_ul"><Link to='/admin'>Admin</Link></ul>
                         </li>
                     </nav>
                 )}
@@ -53,7 +54,7 @@ const Layout = ({
                 {
 
                     <div className="menu-btn">
-                        <img src={hamburguerMenu} onClick={()=>sethamburguerActive(true)} className="menu-btn__burger"></img>
+                        <HiMenu onClick={()=>sethamburguerActive(true)} className="menu-btn__burger"/>
                     </div>
 
                 }

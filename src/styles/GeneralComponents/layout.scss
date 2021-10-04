@@ -14,6 +14,20 @@
                 }
             }
         }
+
+        .layout__header--navContainer {
+            display: flex;
+            list-style-type: none;
+            width: 50%;
+            justify-content: space-evenly;
+            
+            .layout__header--navContainer_ul {
+                font-size: 15px;
+                font-weight: 500;
+                padding: 0;
+            }
+        }
+
     .layout__footer {
         height: 80px;
         background-color: rgb(24, 24, 24);
@@ -24,7 +38,7 @@
         height: 80px;
         .layout__footer--socialIcons,
         .layout__footer--links{
-            width: 20%;
+            width: 30%;
             display: flex;
             justify-content: space-around;
             a{
@@ -37,10 +51,7 @@
     }
 }
 
-.layout__header--navContainer ul {
-    padding: 0;
-    margin-right: 30px;
-}
+
 
 
 @media only screen and (max-width: 2560px) {
@@ -90,16 +101,17 @@
         position: relative;
         display: flex;
         justify-content: center;
-        height: 60%;
-        width: 7%;
-      }
-    
-    .menu-btn img {
-        width: 100%;
+        height: 45%;
+        width: 10%;
+        .menu-btn__burger {
+            color:rgb(32, 32, 32);
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
 .grid__container{
     display: grid;
-    gap: 1rem;
+    gap: 4rem 1rem;
 }

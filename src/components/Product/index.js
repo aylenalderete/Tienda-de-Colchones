@@ -45,7 +45,7 @@ function Product() {
                 </div>
                 <div className="info-container">
                     <h1>{product.nombre}</h1>
-                    <p>{product.precio}</p>
+                    <p>${product.variants[0].price}</p>
                     <p>{product.descripcion}</p>
                     <p>Elegir la medida:</p>
                     <select name='medida' onChange={handleInputChange}>

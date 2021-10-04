@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import Layout, { Grid } from "../GeneralComponents/layout";
 import DashboardImage from '../../assets/adminSlider.png'
-import Slider from "../GeneralComponents/slider";
+import adminSlider from '../../assets/adminSlider.png'
+import image33 from "../../assets/image 33.png"
 import CreateProduct from "./createProduct";
 import EditProduct from "./editProduct";
 import DeleteProduct from "./deleteProduct";
-import { dummyProducts } from "../../constants/dummyData";
 import Card from "../GeneralComponents/card";
 import { getAllProducts } from "../../database/product";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
-import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
 
 const AdminView = () => {
     const [section, setSection] = useState();
@@ -37,36 +37,53 @@ const AdminView = () => {
 
     return (
         <Layout searchBar={false}>
-            <Slider images={[{src: DashboardImage, title: 'Panel admin'}]} />
-            <Grid>
-                {Object.keys(sectionHelper).map((key) => (
-                    <Card 
-                        img={DashboardImage}
-                        buttons={[
-                            {
-                                label:sectionHelper[key].label,
-                                action:() => setSection(key)
-                            }
-                        ]}
-                    />                
-                ))}
+            <div className="admin-section_image-container">
+                <img className="admin-section_image" src={adminSlider}></img>
+                <h1 className="admin-section_title">Panel del administrador</h1>
+            </div>
+            {section && (
+            <>
+            <Grid height="6rem" width="9rem">
+                <Card 
+                            title = 'Volver'
+                            style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
+                            cardAction={() => setSection('create')}
+                        />
             </Grid>
+            </>
+            )}
             {section && sectionHelper[section].component}
             {!section && (
-                <Grid>
-                    {allProducts.map((product) => (
-                        <Card 
-                            title={product.nombre}
-                            img = {DashboardImage}
-                            description = {product.descripcion}
-                            price = {product.precio}
-                            buttons = {[
-                                {label: 'Editar', action: () => editProductHandler(product)},
-                                {label: 'Eliminar', action: () => deleteProductHandler(product)},
-                            ]}
-                        />
-                    ))}
-                </Grid>
+                <>
+                    <Grid height="12rem" width="20rem">
+                        {/* {Object.keys(sectionHelper).map((key) => ( */}
+                            <Card 
+                                img={image33}
+                                title = 'Crear producto'
+                                style={{display:'flex', flexDirection: 'row'}}
+                                cardAction={() => setSection('create')}
+                            />          
+                        {/* ))} */}
+                    </Grid>
+                    
+                    <div>
+                        <h2 style={{textAlign: 'center', color:'rgb(44, 44, 44)'}}>Mis productos</h2>
+                    </div>
+                    <Grid height="26rem">
+                        {allProducts.map((product) => (
+                            <Card 
+                                title={product.nombre}
+                                img = {product.images[0]}
+                                price = {product.variants[0].price}
+                                buttons = {[
+                                    {label: 'Editar', action: () => editProductHandler(product)},
+                                    {label: 'Eliminar', action: () => deleteProductHandler(product)},
+                                ]}
+                            />
+                        ))}
+                    </Grid>
+                </>
+
             )}
         </Layout>
     )

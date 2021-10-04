@@ -1,0 +1,20 @@
+.homeContainer {
+
+
+    .cards-container-products {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 2%;
+
+        .home-title {
+            font-size: 1.5rem;
+            color: #525252;
+        }
+
+        .home-productsList_container{
+            width: 100%;
+        }
+    }
+}

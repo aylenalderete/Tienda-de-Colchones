@@ -1,4 +1,6 @@
 import sliderprueba from "../../assets/sliderprueba.jpg"
+import slider1 from "../../assets/slider1.png"
+import slider2 from "../../assets/slider6.jpg"
 import "../../styles/Home/sliderprueba.scss"
 
 function Sliderprueba() {
@@ -6,8 +8,8 @@ function Sliderprueba() {
         <div className="slider">
             <ul>
                 <li><img src={sliderprueba} /></li>
-                <li><img src={sliderprueba} /></li>
-                <li><img src={sliderprueba} /></li>
+                <li><img src={slider1} /></li>
+                <li><img src={slider2} /></li>
                 <li><img src={sliderprueba} /></li>
             </ul>
         </div>

@@ -1,19 +1,20 @@
 import React from 'react'
 import Layout from "../GeneralComponents/layout";
 import "../../styles/products.scss";
-import DashboardImage from '../../assets/adminSlider.png'
-import Slider from "../GeneralComponents/slider";
-import Card from "../GeneralComponents/card"
-import colchon from "../../assets/colchon1.png"
-import Sliderprueba from '../GeneralComponents/sliderprueba';
+import slider1 from "../../assets/slider1.png"
 import ProductsList from './productsList';
 
 function Products() {
     return (
         <Layout>
             <>
-                <Sliderprueba />
-                <ProductsList />
+                <div className="products-section_image-container">
+                    <img className="products-section_image" src={slider1}></img>
+                    <h1 className="products-section_title">Productos</h1>
+                </div>
+                <div>
+                    <ProductsList />
+                </div>
             </>
         </Layout>
     )

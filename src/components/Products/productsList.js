@@ -13,16 +13,17 @@ const ProductsList = () => {
         console.log(prods)
         setProducts(prods)
     }, [])
+    console.log(products)
 
     return (
-        <Grid>
+        <Grid height='25rem'>
             {products.map((el) => (
-                    <Link to={`/product/${el.doc_id}`}>
+                <Link to={`/product/${el.doc_id}`}>
                     <Card 
                         key={el.doc_id}
+                        img={el.images}
                         title={el.nombre}
-                        description={el.descripcion}
-                        price={el.precio}
+                        price={el.variants[0].price}
                     />
                 </Link>
             ))}

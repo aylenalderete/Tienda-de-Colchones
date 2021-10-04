@@ -69,7 +69,6 @@ export const uploadImagesProduct = async (productId, images) => {
         for (let index = 0; index < images.length; index++) {
             const img = images.item(index);
             const url = await putFileFB(img, `/products/${productId}`)
-            debugger
             imageUrls.push(url)
         }
         Swal.hideLoading()

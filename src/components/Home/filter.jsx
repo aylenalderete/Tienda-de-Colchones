@@ -76,7 +76,7 @@ function Filter() {
                     ))}
                 </div>
                 <div className="filter__column-button">
-                    <button onClick={filtrosFinales} className="button">Buscar</button>
+                    <button onClick={filtrosFinales} className="button-to_search">Buscar</button>
                 </div>
             </div>  
         </div>
