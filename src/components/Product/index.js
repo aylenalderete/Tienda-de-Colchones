@@ -5,6 +5,7 @@ import Layout from '../GeneralComponents/layout'
 import Colchon from '../../assets/colchon1.png'
 import "../../styles/product.scss";
 import { useParams } from 'react-router';
+import { useHistory } from "react-router-dom"
 
 const productInitialState = {
     nombre: '',
@@ -36,17 +37,27 @@ function Product() {
         setLoading(false)
     }
 
+    const handleClick = () => {
+        window.location.assign(`http://api.whatsapp.com/send?phone=+5491170389483&text=Hola!%20Estoy%20interesado/a%20en%20comprar%20el%20siguiente%20producto:%20${product.nombre}%20de%20${product.variants[0].size},%20precio%20$${product.variants[0].price},%20sensacion%20${product.sensacion},%20peso%20max.%20${product.peso}.%20Muchas%20gracias.`);
+    }
+
     if(loading){
         return (
             <h3>cargando...</h3>
         )
     }
 
+
     return (
         <Layout>
             <div className="product-container">
                 <div className="img-container">
-                    <img className="img-product" src={Colchon}></img>
+                    <img className="img-product" src={product.images[0]}></img>
+                </div>
+                <div>
+                    {product.images.map((el) => {
+                        <img src={el}/>
+                    })}
                 </div>
                 <div className="info-container">
                     <h1>{product.nombre}</h1>
@@ -77,7 +88,7 @@ function Product() {
                         <option value='alta densidad'>Alta densidad</option>
                         <option value='resorte'>Resorte</option>
                     </select>
-                    <button className="button">Comprar</button>
+                        <button className="button" onClick={handleClick}>Comprar</button>
                 </div>
             </div>
         </Layout>

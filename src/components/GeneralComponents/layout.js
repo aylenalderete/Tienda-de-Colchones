@@ -5,6 +5,7 @@ import { HiMenu } from 'react-icons/hi'
 import hamburguerMenu from "../../assets/hamburguerMenu.png"
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
+import WhatsappButton from './whatsappButton';
 
 const Layout = ({
     icon = true,
@@ -62,6 +63,9 @@ const Layout = ({
             <section className='layout__section'>
                 {children}
             </section>
+            <div>
+            <WhatsappButton />
+            </div>
             <footer className='layout__footer'>
                 <div className="layout__footer--links">
                     <Link to='/'>
@@ -72,17 +76,6 @@ const Layout = ({
                     </Link>
                     <Link to='/ContactoMayorista'>
                         Contacto mayorista
-                    </Link>
-                </div>
-                <div className="layout__footer--socialIcons">
-                    <Link to='/'>
-                        <FaFacebookF/>
-                    </Link>
-                    <Link to='/productos'>
-                        <FaInstagram />
-                    </Link>
-                    <Link to='/nosotros'>
-                        <FaTwitter />
                     </Link>
                 </div>
             </footer>
