@@ -15,6 +15,13 @@
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .products-section_image-container {
+        .products-section_title {
+            font-size: 1.2rem;
+        }
+    }
+}
 // .product-section-container {
 //     display: flex;
 //     margin-top: 3%

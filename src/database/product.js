@@ -32,7 +32,7 @@ export const updateProductDB = async (id, data) => {
 export const deleteProduct = async (id) => {
     try {
         const path = `products/${id}`
-        // await deleteDocument(path)
+        await deleteDocument(path)
         store.dispatch({type: DELETE_PRODUCT, payload: id})
     } catch (err) {
         alert('Error al elimianr producto')

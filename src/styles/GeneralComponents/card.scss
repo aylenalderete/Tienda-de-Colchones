@@ -6,13 +6,13 @@
     border-radius: 10px;
     align-items: center;
     cursor: pointer;
+    transition: all .4s ease-in-out; 
     .card__img--container{
         img{
             width: 220px;
             height: 124px;
             object-fit: contain;
         }
-
     }
     .card__title--container {
         overflow-wrap: break-word;
@@ -45,4 +45,7 @@
             background-color: #479df3;
         }
     }
+}
+.card__container:hover {
+    transform: scale(1.1);
 }

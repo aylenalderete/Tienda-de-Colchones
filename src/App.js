@@ -5,6 +5,7 @@ import Products from './components/Products';
 import Mayoristas from './components/Mayoristas';
 import AdminView from './components/Admin';
 import Product from './components/Product';
+import Login from './components/Admin/Login';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route exact path='/ContactoMayorista' component={Mayoristas} />
         <Route exact path='/admin' component={AdminView} />
         <Route exact path='/producto' component={Product} />
+        <Route exact path='/login' component={Login} />
       </Switch>
     </BrowserRouter>  
   );

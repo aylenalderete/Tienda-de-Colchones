@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
 import SuaveStarIcon from '../../assets/suavestarIcon.png'
 import { HiMenu } from 'react-icons/hi'
@@ -6,6 +6,7 @@ import hamburguerMenu from "../../assets/hamburguerMenu.png"
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
 import WhatsappButton from './whatsappButton';
+import Navlinks from './navlinks';
 
 const Layout = ({
     icon = true,
@@ -15,9 +16,9 @@ const Layout = ({
     footer = true
 }) => {
     const [inputValue, setInputValue] = useState('')
+    const [open, setOpen] = useState(false)
 
-    const [hamburguerActive, sethamburguerActive] = useState(false)
-
+    console.log(inputValue)
     return (
         <main className="layout__main">
             <header className='layout__header'>
@@ -53,12 +54,11 @@ const Layout = ({
                     </div>
                 )}
                 {
-
                     <div className="menu-btn">
-                        <HiMenu onClick={()=>sethamburguerActive(true)} className="menu-btn__burger"/>
+                        <HiMenu onClick={()=>setOpen(!open)} className="menu-btn__burger"/>
                     </div>
-
                 }
+                { open && <Navlinks />}
             </header>
             <section className='layout__section'>
                 {children}

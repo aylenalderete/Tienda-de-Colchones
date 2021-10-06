@@ -104,7 +104,7 @@ const ProductForm = () => {
     return (
         <form onSubmit={section === 'create' ? sendData : updateData} className="product--container">
             <div>
-                <h2>{section === 'create' ? 'Crear producto' : 'Editar producto'}</h2>
+                <h2 style={{textAlign:'center',}}>{section === 'create' ? 'Crear producto' : 'Editar producto'}</h2>
             </div>
             <Grid className={'form-container'} >
                 <div className='create_product--section' >
@@ -117,27 +117,13 @@ const ProductForm = () => {
                             <p>{label}</p>
                             {console.log(productData[name])}
                             <select value={productData[name]} onChange={handleInputChange} name={name}>
-                                <option value='' disabled>seleccione una opcion</option>
+                                <option value='' disabled>Seleccione una opcion</option>
                                 {items.map((item) => (
                                     <option value={item}>{item}</option>
                                 ))}
                             </select>                       
                         </div>
                     ))}
-                </div>
-                <div className='create_product--section' >
-                    <label>
-                        Subir imagenes
-                        <FaUpload />
-                        <input multiple={true} onChange={handleUploadImages} type="file"/>
-                    </label>
-                    <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                        {imagesPreview.map((src) => (
-                            <div className="image">
-                                <img src={src} style={{margin: '5px'}} width={100} />
-                            </div>
-                        ))}
-                    </div>
                 </div>
                 <div className="create_product--section">
                     <div className="variant__form">
@@ -153,7 +139,7 @@ const ProductForm = () => {
                         </div>
                         <p>{variantSelect.label}</p>
                         <select name='size' value={variant.size} onChange={handleVariantChange}>
-                            <option value='' disabled>seleccione una opcion</option>
+                            <option value='' disabled>Seleccione una opcion</option>
                             {variantSelect.items.map((item) => (
                                 <option value={item}>{item}</option>
                             ))}
@@ -162,8 +148,22 @@ const ProductForm = () => {
                         <button type='button' className='button' onClick={handleAddVariant}>Añadir variante</button>                    
                     </div>
                 </div>
+                <div className='create_product--section' >
+                    <label className='create_product--section_label' style={{backgroundColor:'#eeeeee', height: '2rem', width:'13rem', borderRadius:'15px', textAlign:'center', alignItems:'center', display:'flex', justifyContent:'center', cursor:'pointer'}}>
+                        Subir imagenes 
+                        <FaUpload />
+                        <input multiple={true} onChange={handleUploadImages} type="file"/>
+                    </label>
+                    <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                        {imagesPreview.map((src) => (
+                            <div className="image">
+                                <img src={src} style={{margin: '5px'}} width={100} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </Grid>
-            <div>
+            <div style={{justifyContent:'center', display: 'flex', margin:'3%'}}>
                 <button type="submit" className="button">{section === 'create' ? 'Crear producto' : 'Editar producto'}</button>
             </div>
         </form>

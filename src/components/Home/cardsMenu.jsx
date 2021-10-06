@@ -1,11 +1,13 @@
 import React from 'react'
 import colchon1 from "../../assets/colchon1.png"
 import "../../styles/Home/cardsmenu.scss"
+import { Grid } from '../GeneralComponents/layout'
 
 
 function CardsMenu() {
     return (
         <section className="section-container">
+
             <div className="card-column">
                 <div className="container-column-img">
                     <img className="column-img" src={colchon1} />
@@ -24,6 +26,7 @@ function CardsMenu() {
                     <button className="button">Ver más</button>
                 </div>
             </div>
+
         </section>
     )
 }

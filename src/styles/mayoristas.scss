@@ -1,5 +1,5 @@
 .mayoristas-section {
-    background-image: url(".././assets/fondoestrellas.jpg");
+    background-image: url("https://image.freepik.com/free-vector/white-abstract-background-design_23-2148825582.jpg");
     height: 630px;
     position: relative;
 
@@ -11,10 +11,22 @@
         border-radius: 12px; 
         padding: 2% 4%; 
         flex-direction: column; 
-        background-color: #f3f3f3;
+        background-color: #dddddd;
+        color: #3d3d3d;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50% , -50%);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .mayoristas-section {
+        .container-info {
+            width: 70%;
+            font-size: 12px;
+            height: 55%;
+            top: 40%;
+        }
     }
 }

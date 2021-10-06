@@ -5,6 +5,7 @@ import image33 from "../../assets/image 33.png"
 import ProductForm from "./createProduct";
 import DeleteProduct from "./deleteProduct";
 import Card from "../GeneralComponents/card";
+import "../../styles/GeneralComponents/card.scss"
 import { deleteProduct, getAllProducts } from "../../database/product";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
@@ -61,7 +62,7 @@ const AdminView = () => {
             <Grid height="6rem" width="9rem">
                 <Card 
                     title = 'Volver'
-                    style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
+                    style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop:'15px', paddingTop: '3px', paddingBottom: '3px'}}
                     cardAction={() => history.push('?')}
                 />
             </Grid>

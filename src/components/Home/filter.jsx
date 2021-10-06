@@ -55,25 +55,31 @@ function Filter() {
                     <div className="filter__column-title">
                         <p className="filter__container-p">1- ¿QUÉ MEDIDA ESTÁS BUSCANDO?</p>
                     </div>
+                    <div className="buttons-container-filter">
                     {buttonsSizes.map((buttonProps) => (
                         <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
+                    </div>
                 </div>
                 <div className="filter__column">
                     <div className="filter__column-title">
                         <p className="filter__container-p">2- ¿QUÉ PESO TIENE QUE SOPORTAR TU COLCHÓN?</p>
                     </div>
+                    <div className="buttons-container-filter">
                     {buttonsWeight.map((buttonProps) => (
                         <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
+                    </div>
                 </div>
                 <div className="filter__column">
                     <div className="filter__column-title">
                         <p className="filter__container-p">3- ¿QUÉ SENSACIÓN PREFERÍS?</p>
                     </div>
+                    <div className="buttons-container-filter">
                     {buttonsSensation.map((buttonProps) => (
                         <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
+                    </div>
                 </div>
                 <div className="filter__column-button">
                     <button onClick={filtrosFinales} className="button-to_search">Buscar</button>
