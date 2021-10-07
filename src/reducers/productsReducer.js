@@ -1,4 +1,4 @@
-import { DELETE_PRODUCT, SET_ALL_PRODUCTS, UPDATE_PRODUCT } from "../constants/productConstans";
+import { DELETE_PRODUCT, SET_ALL_PRODUCTS, UPDATE_PRODUCT, SET_NEW_PRODUCT} from "../constants/productConstans";
 
 const userReducerInitialState = {
     allProducts: []
@@ -10,6 +10,11 @@ const userReducers = (state = userReducerInitialState, {type, payload}) => {
             return {
                 ...state,
                 allProducts: payload
+            }
+        case SET_NEW_PRODUCT:
+            return {
+                ...state,
+                allProducts: [...state.allProducts, payload]
             }
         case UPDATE_PRODUCT:
             return {

@@ -89,6 +89,25 @@
                 justify-content: space-around;
                 cursor: pointer;
             }
+            .imagesContainer {
+                .image {
+                    position: relative;
+                    padding-right: 10px;
+                    padding-top: 10px;
+                    svg {
+                        position: absolute;
+                        visibility: hidden;
+                        top: 0;
+                        right: 0;
+                        cursor: pointer;
+                    }
+                    &:hover {
+                        svg {
+                            visibility:visible ;
+                        }
+                    }
+                }
+            }
         }
     }
     .button {

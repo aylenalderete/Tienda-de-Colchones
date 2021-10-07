@@ -18,7 +18,6 @@ const Layout = ({
     const [inputValue, setInputValue] = useState('')
     const [open, setOpen] = useState(false)
 
-    console.log(inputValue)
     return (
         <main className="layout__main">
             <header className='layout__header'>

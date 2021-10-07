@@ -18,7 +18,6 @@ const productInitialState = {
 
 const ProductForm = () => {
     const [productData, setproductData] = useState(productInitialState)
-    const [imagesPreview, setImagesPreview] = useState([])
     const [variant, setVariant] = useState({price: '', size: ''})
     const history = useHistory()
     const location = useLocation()
@@ -29,7 +28,6 @@ const ProductForm = () => {
             getProduct(productId)
             .then((data) => {
                 setproductData(data)
-                setImagesPreview(data.images)
             })
         }
     },[productId]) 
@@ -57,25 +55,50 @@ const ProductForm = () => {
             const file = files.item(index);
             fileUrls.push(URL.createObjectURL(file))
         }
-        setproductData({...productData, images: files})
-        setImagesPreview(fileUrls)
+        setproductData({...productData, images: [...productData.images, ...files]})        
+    }
+
+    const renderImages = () => {
+        const fileUrls = []
+        for (let index = 0; index < productData.images.length; index++) {            
+            const file = productData.images[index];
+            if(typeof file !== 'string'){
+                fileUrls.push(URL.createObjectURL(file))
+            } else {
+                fileUrls.push(file)
+            }
+        }
+        return fileUrls
     }
 
     const sendData = async  (e) => {
         try {
             e.preventDefault()
+            if(productData.variants.length === 0) return alert('Debe agregar al menos una variante')            
+            if(productData.images.length === 0) return alert('Debe agregar al menos una imagen')
             await createProductDB(productData)
             Swal.fire('Producto creado!', '', 'success')
+            setproductData(productInitialState)
         } catch (err) {
             
         }
     }    
 
+    const removeImage = (i) => {
+        let temp = [...productData.images]
+        temp.splice(i, 1)
+        setproductData({...productData, images: temp})
+    }
+
     const updateData = async (e) => {
         try {
             e.preventDefault()
+            Swal.fire('Actualizando...')
+            Swal.showLoading()
             await updateProductDB(productId, productData)
-            Swal.fire('Producto creado!', '', 'success')
+            Swal.fire('Producto actualizado!', '', 'success')
+            Swal.hideLoading()
+            history.goBack()
         } catch (err) {            
             console.error(err)
         }
@@ -95,12 +118,11 @@ const ProductForm = () => {
     ]
 
     const variantSelect =  {
-         label: 'Seleccionar medidas: ',
-         name: 'medida',
-         items: ["1 plaza", "1 plaza y media", "2 plazas", "2 plazas y media"]
-     }
+        label: 'Seleccionar medidas: ',
+        name: 'medida',
+        items: ["1 plaza", "1 plaza y media", "2 plazas", "2 plazas y media"]
+    }
 
-     console.log(productData)
     return (
         <form onSubmit={section === 'create' ? sendData : updateData} className="product--container">
             <div>
@@ -108,15 +130,14 @@ const ProductForm = () => {
             </div>
             <Grid className={'form-container'} >
                 <div className='create_product--section' >
-                    <input value={productData['nombre']} autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
-                    <textarea value={productData['descripcion']} autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
+                    <input required value={productData['nombre']} autoComplete='off' name="nombre" onChange={handleInputChange} placeholder="Nombre del producto"></input>
+                    <textarea required value={productData['descripcion']} autoComplete='off' rows='10' name="descripcion" onChange={handleInputChange} placeholder="Descripción del producto"/>
                 </div>
                 <div className='create_product--section'>
                     {selectsHelper.map(({items, label, name}) => (
                         <div className='select__container' >
                             <p>{label}</p>
-                            {console.log(productData[name])}
-                            <select value={productData[name]} onChange={handleInputChange} name={name}>
+                            <select required value={productData[name]} onChange={handleInputChange} name={name}>
                                 <option value='' disabled>Seleccione una opcion</option>
                                 {items.map((item) => (
                                     <option value={item}>{item}</option>
@@ -125,6 +146,20 @@ const ProductForm = () => {
                         </div>
                     ))}
                 </div>
+                {/* <div className='create_product--section' >
+                    <label>
+                        Subir imagenes
+                        <FaUpload />
+                        <input multiple={true} onChange={handleUploadImages} type="file"/>
+                    </label>
+                    <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                        {productData.images.length > 0 && renderImages().map((src) => (
+                            <div className="image">
+                                <img src={src} style={{margin: '5px'}} width={100} />
+                            </div>
+                        ))}
+                    </div>
+                </div> */}
                 <div className="create_product--section">
                     <div className="variant__form">
                         <h5>Variantes</h5>
@@ -155,8 +190,9 @@ const ProductForm = () => {
                         <input multiple={true} onChange={handleUploadImages} type="file"/>
                     </label>
                     <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                        {imagesPreview.map((src) => (
-                            <div className="image">
+                        {renderImages().map((src, i) => (
+                            <div className="image"> 
+                                <FaTimesCircle onClick={() => removeImage(i)} />                               
                                 <img src={src} style={{margin: '5px'}} width={100} />
                             </div>
                         ))}

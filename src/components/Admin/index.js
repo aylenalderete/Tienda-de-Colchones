@@ -40,7 +40,8 @@ const AdminView = () => {
             title: `¿Desea eliminar "${nombre}"?`,
             icon: 'question',
             showCancelButton: true,
-            showConfirmButton: true
+            showConfirmButton: true,
+            reverseButtons: true
         })
         if(res.isConfirmed){
             Swal.fire('Eliminando')
@@ -55,7 +56,7 @@ const AdminView = () => {
         <Layout searchBar={false}>
             <div className="admin-section_image-container">
                 <img className="admin-section_image" src={adminSlider}></img>
-                <h1 className="admin-section_title">Panel del administrador</h1>
+                <h1 className="admin-section_title">Panel del administrador</h1>        
             </div>
             {section && (
             <>
@@ -72,16 +73,13 @@ const AdminView = () => {
             {!section && (
                 <>
                     <Grid height="12rem" width="20rem">
-                        {/* {Object.keys(sectionHelper).map((key) => ( */}
-                            <Card 
-                                img={image33}
-                                title = 'Crear producto'
-                                style={{display:'flex', flexDirection: 'row'}}
-                                cardAction={() =>  history.push(`?section=create`)}
-                            />          
-                        {/* ))} */}
+                        <Card 
+                            img={image33}
+                            title = 'Crear producto'
+                            style={{display:'flex', flexDirection: 'row'}}
+                            cardAction={() =>  history.push(`?section=create`)}
+                        />          
                     </Grid>
-                    
                     <div>
                         <h2 style={{textAlign: 'center', color:'rgb(44, 44, 44)'}}>Mis productos</h2>
                     </div>
