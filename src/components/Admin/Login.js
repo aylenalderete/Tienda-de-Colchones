@@ -4,7 +4,7 @@ import "../../styles/login.scss"
 import { useEffect, useState } from "react"
 
 function Login() {
-    const [datosUsuario, setdatosUsuario] = useState([])
+    const [datosUsuario, setdatosUsuario] = useState({nombre: '', contraseña: ''})
 
     const handleInputChange = (e) => {
         setdatosUsuario({...datosUsuario, [e.target.name] : e.target.value})

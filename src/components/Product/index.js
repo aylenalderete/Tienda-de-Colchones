@@ -5,8 +5,9 @@ import Layout from '../GeneralComponents/layout'
 import Colchon from '../../assets/colchon1.png'
 import "../../styles/product.scss";
 import { useParams } from 'react-router';
-import { useHistory } from "react-router-dom"
 import Slider from 'infinite-react-carousel';
+import { useLocation } from "react-router";
+import queryString from 'query-string';
 
 const productInitialState = {
     nombre: '',
@@ -24,7 +25,9 @@ function Product() {
     const [priceActive, setpriceActive] = useState([])
     const [loading, setLoading] = useState(true)
     const {doc_id} = useParams()
-
+    const location = useLocation()
+    const {search} = queryString.parse(location.search)
+    console.log('productos', search)
     useEffect(() => {
         obtenerDatos()
     }, [])
@@ -65,8 +68,8 @@ function Product() {
                     </section>
                 </div>
                 <div className="info-container">
-                    <h1 style={{marginBottom:'1%'}}>{product.nombre}</h1>
-                    <h2 style={{marginTop:'3%'}}>${product.variants[0].price}</h2>
+                    <h1 style={{marginBottom:'1%', fontSize: '22px'}}>{product.nombre}</h1>
+                    <h2 style={{marginTop:'3%', color: '#418fde'}}>${product.variants[0].price}</h2>
                     <p style={{marginBottom:'1%'}}>Descripción:</p>
                     <p style={{marginTop:'1%', marginBottom:'1%'}}>{product.descripcion}.</p>
                     <p>Este producto soporta {product.peso} y su tipo de sensación es de {product.sensacion}.</p>

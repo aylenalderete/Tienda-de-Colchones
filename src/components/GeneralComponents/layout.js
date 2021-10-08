@@ -7,6 +7,7 @@ import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
 import WhatsappButton from './whatsappButton';
 import Navlinks from './navlinks';
+import { useHistory, useLocation } from "react-router";
 
 const Layout = ({
     icon = true,
@@ -15,8 +16,18 @@ const Layout = ({
     children = <h2>pasale el children gil</h2>,
     footer = true
 }) => {
+
     const [inputValue, setInputValue] = useState('')
     const [open, setOpen] = useState(false)
+    const history = useHistory()
+
+
+    const handleKeyDown = ({ keyCode }) => {
+        if (keyCode !== 13) return null;
+        else {     
+            history.push(`/productos?search=${inputValue}`)
+        }
+    };
 
     return (
         <main className="layout__main">
@@ -48,6 +59,7 @@ const Layout = ({
                             type="search"
                             placeholder='¿Qué está buscando?'
                             onChange={({target:{value}}) => setInputValue(value)} 
+                            onKeyDown={handleKeyDown}
                             value={inputValue}
                         />
                     </div>
