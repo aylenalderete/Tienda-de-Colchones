@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    .items-container {
+        width: 95%;
+        .items-subtitle {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+    .loadingItems-container{
+        height: 50vh;
+    }
+    .nonItems-container {
+        height: 50vh;
+        text-align: center;
+    }
+}

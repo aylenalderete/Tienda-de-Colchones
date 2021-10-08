@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../styles/GeneralComponents/layout.scss"
-import 'animate.css';
+// import 'animate.css';
 
 function Navlinks() {
     return (

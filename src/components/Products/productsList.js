@@ -1,33 +1,107 @@
-import { useState } from "react";
-import { getAllProducts } from "../../database/product";
-import { useEffectAsync } from "../../utils/hooks";
+import { useEffect, useRef, useState } from "react";
 import Card from "../GeneralComponents/card";
 import { Grid } from "../GeneralComponents/layout";
-import { useHistory } from "react-router-dom"
+import {getAllProducts} from '../../database/product'
+import { useHistory, useLocation} from "react-router-dom"
+import queryString from 'query-string';
+import { filterItems } from "./filterUtils";
+import '../../styles/productList.scss'
 
 const ProductsList = () => {
     const [products, setProducts] = useState([])
+    const [productsFiltered, setProductsFiltered] = useState({ideal: [], size: [], weight: [], sensation: []})
+    const [loading, setLoading] = useState(true)
     const history = useHistory()
+    const location = useLocation()
+    const params = queryString.parse(location.search)
+    const topRef = useRef(null)
 
-
-    useEffectAsync(async () => {
-        const prods = await getAllProducts()
-        console.log(prods)
-        setProducts(prods)
+    useEffect(() => {
+        getAllProducts()
+        .then((prods) => {
+            if(!params.filterSteps) {
+                setLoading(false)
+                return setProducts(prods)
+            } else {
+                const itemsFiltered = filterItems(prods, params)                        
+                setProductsFiltered(itemsFiltered)
+                setLoading(false)
+            }            
+        })
+        .catch((error) => setLoading(false))
     }, [])
+    
+    useEffect(() => (
+        params?.filterSteps && setTimeout(() => window.scrollTo({ top: topRef.current.offsetTop, behavior: 'smooth' }), 200) 
+    ), [loading])
+
+    const titles = {
+        'ideal': 'Productos ideales según tu busqueda: ',
+        'size': 'Productos en cuanto al tamaño seleccionado: ',
+        'weight': 'Productos en cuanto al peso seleccionado: ',
+        'sensation': 'Productos en cuanto al la sensación seleccionada: ',
+    }
+
+    const renderItemsFiltered = (type) => {
+        return (
+            <div className='items-container' >
+                <div className="items-subtitle">
+                    <h2>{titles[type]}</h2>
+                </div>
+                <Grid height='22rem'>
+                    {productsFiltered[type].map((el) => (
+                        <Card
+                            style={{width: '220px', textAlign: 'center'}}
+                            description={el.propDescription} 
+                            descriptionMaxLength={el.propDescription.length}
+                            cardAction={() => history.push(`/product/${el.doc_id}`)}
+                            key={el.doc_id}
+                            img={el.images[0]}
+                            title={el.nombre}
+                            price={el.variants[0].price}
+                        />
+                    ))}
+                </Grid>
+            </div>
+        )
+    }   
+
 
     return (
-        <Grid height='17rem'>
-            {products.map((el) => (
-                <Card 
-                    cardAction={() => history.push(`/product/${el.doc_id}`)}
-                    key={el.doc_id}
-                    img={el.images}
-                    title={el.nombre}
-                    price={el.variants[0].price}
-                />
-            ))}
-        </Grid>
+        <div className='container' ref={topRef} >
+            {loading && (
+                <div className="loadingItems-container">
+                    <h2>Cargando productos...</h2>
+                </div>
+            )}
+            {!loading && !params?.filterSteps && (
+                <Grid height='22rem'>
+                    {products.map((el) => (
+                            <Card 
+                                cardAction={() => history.push(`/product/${el.doc_id}`)}
+                                key={el.doc_id}
+                                img={el.images}
+                                title={el.nombre}
+                                price={el.variants[0].price}
+                            />
+                        ))}
+                </Grid>
+            )}
+            {!loading && params.filterSteps && 
+                productsFiltered.ideal.length === 0 && 
+                productsFiltered.size.length === 0 && 
+                productsFiltered.weight.length === 0 && 
+                productsFiltered.sensation.length === 0 && (
+                <div className="nonItems-container">
+                    <h4>No encontramos articulos relacionados a su busqueda</h4>
+                </div>
+            )}
+            {!loading && params.filterSteps && 
+                Object.keys(productsFiltered).map((type) => (
+                    productsFiltered[type].length > 0 && renderItemsFiltered(type)
+                ))
+            }
+        </div>
     )
 }
 
