@@ -9,6 +9,7 @@ import WhatsappButton from './whatsappButton';
 import Navlinks from './navlinks';
 import { useHistory, useLocation } from "react-router";
 
+
 const Layout = ({
     icon = true,
     searchBar = true,
@@ -66,7 +67,7 @@ const Layout = ({
                 )}
                 {
                     <div className="menu-btn">
-                        <HiMenu onClick={()=>setOpen(!open)} className="menu-btn__burger"/>
+                        <HiMenu onClick={()=>setOpen(!open)} className="menu-btn__burger "/>
                     </div>
                 }
                 { open && <Navlinks />}

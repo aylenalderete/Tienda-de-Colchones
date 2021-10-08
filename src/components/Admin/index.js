@@ -60,10 +60,10 @@ const AdminView = () => {
             </div>
             {section && (
             <>
-            <Grid height="6rem" width="9rem">
+            <Grid height="5rem" width="9rem">
                 <Card 
                     title = 'Volver'
-                    style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop:'15px', paddingTop: '3px', paddingBottom: '3px'}}
+                    style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop:'15px', paddingTop: '1px', paddingBottom: '1px'}}
                     cardAction={() => history.push('?')}
                 />
             </Grid>

@@ -3,6 +3,7 @@ import Layout from "../GeneralComponents/layout";
 import "../../styles/products.scss";
 import slider1 from "../../assets/slider1.png"
 import ProductsList from './productsList';
+import queryString from 'query-string';
 
 function Products() {
     return (

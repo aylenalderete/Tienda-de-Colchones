@@ -7,13 +7,14 @@ const Card = ({
     price = '',
     style = {},
     cardAction = () => {},
-    buttons = []
+    buttons = [],
+    imgStyle = {},
 }) => {
     return (
         <div className="card__container" style={style} onClick={cardAction}>
             {img && (
                 <div className="card__img--container">
-                    <img src={img} alt='Imagen'/>
+                    <img style={imgStyle} src={img} alt='Imagen'/>
                 </div>
             )}
             {title && (

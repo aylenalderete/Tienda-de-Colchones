@@ -1,9 +1,10 @@
 import React from 'react'
 import "../../styles/GeneralComponents/layout.scss"
+import 'animate.css';
 
 function Navlinks() {
     return (
-        <ul className="navlinks-container">
+        <ul className="navlinks-container animate__slideInDown">
             <li>
                 <a href="/">Inicio</a>
             </li>

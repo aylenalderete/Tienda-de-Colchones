@@ -17,7 +17,7 @@ const ProductsList = () => {
     }, [])
 
     return (
-        <Grid height='25rem'>
+        <Grid height='17rem'>
             {products.map((el) => (
                 <Card 
                     cardAction={() => history.push(`/product/${el.doc_id}`)}

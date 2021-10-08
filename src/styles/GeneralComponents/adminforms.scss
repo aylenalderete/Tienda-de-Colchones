@@ -124,10 +124,11 @@
 }
 
 //admin banner
-// @media only screen and (max-width: 768px) {
-//     .admin-section_image-container .admin-section_title {
-//         text-align: center;
-//         width: 90%;
-//         top: 30%;
-//     }
-// }
+@media only screen and (max-width: 768px) {
+    .admin-section_image-container .admin-section_title {
+        text-align: center;
+        font-size: 1.3rem;
+        width: 90%;
+        top: 30%;
+    }
+}

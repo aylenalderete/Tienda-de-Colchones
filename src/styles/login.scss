@@ -1,6 +1,6 @@
 .login-section {
     background-image: url("https://image.freepik.com/free-vector/white-abstract-background-design_23-2148825582.jpg");
-    height: 500px;
+    height: 100vh;
     position: relative;
 
     .login-container-info {
@@ -53,6 +53,15 @@
             font-size: 12px;
             height: 55%;
             top: 40%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .login-section {
+        .login-container-info {
+            width: 33%;
+            height: 55%;
         }
     }
 }
