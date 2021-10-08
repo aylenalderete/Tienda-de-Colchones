@@ -17,7 +17,7 @@ function CardsMenu() {
                     img={colchon1}
                     imgStyle = {{width: '170px'}}
                     style={{width: '80%', display:'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '10%', paddingBottom: '10%', color: 'rgb(92 92 92)'}}
-                    title={'La mejor tecnología: Colchones Fisher'}
+                    title={'Conocé nuestros productos'}
                 />
         </Grid>
         <Grid height="17rem" width="20rem">
@@ -26,7 +26,7 @@ function CardsMenu() {
                     img={colchon1}
                     imgStyle = {{width: '170px'}}
                     style={{width: '80%', display:'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: '10%', paddingBottom: '10%', color: 'rgb(92 92 92)'}}
-                    title={'¿Te gustaría vender nuestros productos?'}
+                    title={'¿Te gustaría vender por mayor?'}
                 />
         </Grid>
         </section>
