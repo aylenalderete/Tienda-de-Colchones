@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { filterItems } from "./filterUtils";
 import '../../styles/productList.scss'
 
-const ProductsList = () => {
+const ProductsList = ({maxItems}) => {
     const [products, setProducts] = useState([])
     const [productsFiltered, setProductsFiltered] = useState({ideal: [], size: [], weight: [], sensation: []})
     const [loading, setLoading] = useState(true)
@@ -16,17 +16,39 @@ const ProductsList = () => {
     const params = queryString.parse(location.search)
     const topRef = useRef(null)
 
+    function removeAccents(str){
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    } 
+    
+
     useEffect(() => {
         getAllProducts()
         .then((prods) => {
-            if(!params.filterSteps) {
-                setLoading(false)
-                return setProducts(prods)
-            } else {
+            if (params.filterSteps){
                 const itemsFiltered = filterItems(prods, params)                        
                 setProductsFiltered(itemsFiltered)
                 setLoading(false)
-            }            
+            // } else if (params.search) {
+            //     let words = params.search.toLowerCase().split(' ').map((el) => removeAccents(el))
+
+            //     function predicate(str){
+            //         if(words.some((w) => removeAccents(str.toLowerCase().includes(w)))){
+            //             return true
+            //         } else return false
+            //     }
+            //     function predicate2(val){
+            //         if(JSON.stringify(val).replace(/([.*,+?^=!:${}()|\[\]\/\\])/g, ' ').split(' ').replace(/([.*,+?^=!:${}()|\[\]\/\\])/g, ' ').some(predicate)){
+            //             return true
+            //         } else return false
+            //     }
+
+            //     let temp = prods.filter((prod) => Object.values(prod).some(predicate2))
+            //     setProducts(temp)
+            //     setLoading(false)
+            } else {
+                setLoading(false)
+                setProducts(prods)
+            }
         })
         .catch((error) => setLoading(false))
     }, [])
@@ -76,7 +98,9 @@ const ProductsList = () => {
             )}
             {!loading && !params?.filterSteps && (
                 <Grid height='22rem'>
-                    {products.map((el) => (
+                    {products
+                        .slice(0, maxItems)
+                        .map((el) => (
                             <Card 
                                 cardAction={() => history.push(`/product/${el.doc_id}`)}
                                 key={el.doc_id}

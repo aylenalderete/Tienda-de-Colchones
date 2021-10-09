@@ -75,7 +75,7 @@ function Product() {
                     <p>Este producto soporta {product.peso} y su tipo de sensación es de {product.sensacion}.</p>
                     <p>Elegir la medida:</p>
                         <select className="info-container_select" name='medida' onChange={handleInputChange}>
-                        {product.variants.map((el) => (
+                        {product.variants.map((el, i) => (
                             <option value='1 plaza'>{el.size}</option>
                         ))}
                         </select>
