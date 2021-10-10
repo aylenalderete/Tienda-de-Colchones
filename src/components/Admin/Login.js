@@ -3,6 +3,7 @@ import React from 'react'
 import "../../styles/login.scss"
 import { useState } from "react"
 import { singInWithEmailAndPass } from "../../database/auth";
+import Swal from "sweetalert2";
 
 function Login() {
     const [datosUsuario, setdatosUsuario] = useState({email: '', password: ''})
@@ -13,7 +14,9 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await singInWithEmailAndPass(datosUsuario.email, datosUsuario.password)
+        Swal.fire('Iniciando sesión...')
+        Swal.showLoading()
+        await singInWithEmailAndPass(datosUsuario.email, datosUsuario.password)        
     }
 
     return (
