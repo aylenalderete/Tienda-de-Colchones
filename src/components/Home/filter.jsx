@@ -11,6 +11,8 @@ function Filter() {
         if (filtros.includes(e.target.id)) {
             let index = filtros.indexOf(e.target.id);
             filtros.splice(index, 1);
+        } else if(filterType === 'weight') {
+            filtros = [e.target.id]
         } else {
             filtros.push(e.target.id)
         }
@@ -60,7 +62,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsSizes.map((buttonProps) => (
-                        <button onClick={(e) => medidaElegida(e, 'size')} id={buttonProps.value} className={`${filtersSelected['size'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'size')} id={buttonProps.value} className={`filter-button ${filtersSelected['size'].includes(buttonProps.value) && 'active'}`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>
@@ -70,7 +72,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsWeight.map((buttonProps) => (
-                        <button onClick={(e) => medidaElegida(e, 'weight')} id={buttonProps.value} className={`${filtersSelected['weight'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'weight')} id={buttonProps.value} className={`filter-button ${filtersSelected['weight'].includes(buttonProps.value) && 'active'}`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>
@@ -80,7 +82,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsSensation.map((buttonProps) => (
-                        <button onClick={(e) => medidaElegida(e, 'sensation')} id={buttonProps.value} className={`${filtersSelected['sensation'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'sensation')} id={buttonProps.value} className={`filter-button ${filtersSelected['sensation'].includes(buttonProps.value) && 'active'}`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>

@@ -226,5 +226,8 @@
     &.animate__slideInDown{
         height: 145px;
         transition: all ease-in-out 0.1s;
+        &.loged{
+            height: 230px;        
+        }
     }
 }
