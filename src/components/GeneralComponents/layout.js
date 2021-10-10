@@ -110,7 +110,7 @@ export const Grid = ({
         display: 'grid',
         gridGap: '1rem',
         gap: '1rem',
-        width: 'auto',
+        width: '100%',
         justifyItems: spacing,
         alignItems: align,
         gridAutoRows: height,

@@ -4,12 +4,22 @@ const Card = ({
     img = '',
     title = '',
     description = '',
+    descriptionMaxLength = 50,
     price = '',
     style = {},
     cardAction = () => {},
     buttons = [],
     imgStyle = {},
 }) => {
+    const renderDescription = (text) => {
+        let element;
+        text = description.length > descriptionMaxLength ? text.slice(0, 50) : text
+        if(text.includes('\n')){
+            element = text.split('\n').map((el) => (<>{el} <br></br> </>))
+        }
+        return element;
+    }
+
     return (
         <div className="card__container" style={style} onClick={cardAction}>
             {img && (
@@ -24,7 +34,7 @@ const Card = ({
             )}
             {description && (
                 <div className="card__description--container">
-                    <p>{description.slice(0, 50)}{description.length > 50 && '...'}</p>
+                    <p>{renderDescription(description)}{description.length > descriptionMaxLength && '...'}</p>
                 </div>
             )}
             {price && (

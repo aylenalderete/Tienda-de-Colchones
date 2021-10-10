@@ -18,7 +18,10 @@
         overflow-wrap: break-word;
         
     }
-    .card__description--container{        
+    .card__description--container{     
+        p {
+            margin: 0;
+        }   
         
     }
     .card__price--container{

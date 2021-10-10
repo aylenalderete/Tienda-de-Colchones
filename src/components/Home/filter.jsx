@@ -1,30 +1,33 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 import '../../styles/Home/filter.scss'
 
 function Filter() {
-    const [filterActive, setfilterActive] = useState([])
+    const [filtersSelected, setFiltersActives] = useState({size: [], weight: [], sensation: []})
+    const history = useHistory()
     
-    const medidaElegida = (e) => {
-        let filtros = [...filterActive]
+    const medidaElegida = (e, filterType) => {
+        let filtros = [...filtersSelected[filterType]]
         if (filtros.includes(e.target.id)) {
             let index = filtros.indexOf(e.target.id);
             filtros.splice(index, 1);
         } else {
             filtros.push(e.target.id)
         }
-        setfilterActive(filtros)
-        console.log(filtros)
+        setFiltersActives({...filtersSelected, [filterType]: filtros})
     }
+    const isEmpty = (arr) => arr.length === 0 ? true : false
 
     const filtrosFinales = (e) => {
-        console.log(filterActive)
+        const {size, weight, sensation} = filtersSelected;
+        history.push(`/productos?filterSteps=true${!isEmpty(size) ? `&size=${size}` : ''}${!isEmpty(weight) ? `&weight=${weight}` : ''}${!isEmpty(sensation) ? `&sensation=${sensation}` : ''}`)
     }
 
     const buttonsSizes = [
         {label:'1 plaza', value: "1 plaza"},
-        {label:'1 plaza y media', value: "1½ plaza"},
+        {label:'1 plaza y media', value: "1 plaza y media"},
         {label:'2 plazas', value: "2 plazas"},
-        {label:'2 plazas y media', value: "2½ plazas"},
+        {label:'2 plazas y media', value: "2 plazas y media"},
     ]
 
     const buttonsWeight = [
@@ -40,9 +43,9 @@ function Filter() {
     ]
 
     const buttonsSensation = [
-        {label:'Goma espuma', value: "Goma espuma"},
-        {label:'Alta densidad', value: "Alta densidad"},
-        {label:'Resorte', value: "Resorte"},
+        {label:'Goma espuma', value: "goma espuma"},
+        {label:'Alta densidad', value: "alta densidad"},
+        {label:'Resorte', value: "resorte"},
     ]
 
     return (
@@ -57,7 +60,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsSizes.map((buttonProps) => (
-                        <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'size')} id={buttonProps.value} className={`${filtersSelected['size'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>
@@ -67,7 +70,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsWeight.map((buttonProps) => (
-                        <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'weight')} id={buttonProps.value} className={`${filtersSelected['weight'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>
@@ -77,7 +80,7 @@ function Filter() {
                     </div>
                     <div className="buttons-container-filter">
                     {buttonsSensation.map((buttonProps) => (
-                        <button onClick={medidaElegida} id={buttonProps.value} className={`${filterActive.includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
+                        <button onClick={(e) => medidaElegida(e, 'sensation')} id={buttonProps.value} className={`${filtersSelected['sensation'].includes(buttonProps.value) && 'active'} filter-button`}>{buttonProps.label}</button>
                     ))}
                     </div>
                 </div>

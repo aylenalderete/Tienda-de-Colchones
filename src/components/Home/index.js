@@ -22,7 +22,7 @@ const Home = () => {
                         <h1 className="home-title">Productos destacados</h1>
                     </div>
                     <div className="home-productsList_container">
-                        <ProductsList />
+                        <ProductsList maxItems={6} />
                     </div>
                 </section>
             </div>
