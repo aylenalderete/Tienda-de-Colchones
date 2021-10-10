@@ -19,7 +19,7 @@ const Home = () => {
                 <Filter />
                 <section className="cards-container-products">
                     <div>
-                        <h1 className="home-title">Ofertas destacadas</h1>
+                        <h1 className="home-title">Productos destacados</h1>
                     </div>
                     <div className="home-productsList_container">
                         <ProductsList />
