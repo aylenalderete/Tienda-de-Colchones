@@ -27,7 +27,7 @@ function Product() {
 
 
     const handleClick = () => {
-        window.location.assign(`http://api.whatsapp.com/send?phone=+5491170389483&text=Hola!%20Estoy%20interesado/a%20en%20comprar%20el%20siguiente%20producto:%20${product.nombre}%20de%20${product.variants[priceActive].size},%20precio%20$${product.variants[priceActive].price},%20sensacion%20${product.sensacion},%20peso%20max.%20${product.peso}.%20Muchas%20gracias.`);
+        window.location.assign(`http://api.whatsapp.com/send?phone=+5491165183514&text=Hola!%20Estoy%20interesado/a%20en%20comprar%20el%20siguiente%20producto:%20${product.nombre}%20de%20${product.variants[priceActive].size},%20precio%20$${product.variants[priceActive].price},%20sensacion%20${product.sensacion},%20peso%20max.%20${product.peso}.%20Muchas%20gracias.`);
     }
 
 
