@@ -44,7 +44,7 @@ const ProductsList = ({maxItems}) => {
         'ideal': 'Productos ideales según tu busqueda: ',
         'size': 'Productos en cuanto al tamaño seleccionado: ',
         'weight': 'Productos en cuanto al peso seleccionado: ',
-        'sensation': 'Productos en cuanto al la sensación seleccionada: ',
+        'sensation': 'Productos en cuanto a la sensación seleccionada: ',
     }
 
     const renderItemsFiltered = (type, i) => {
