@@ -29,6 +29,9 @@
             height: 33px;
             margin: 10px;
             padding: 0px 0px 0px 8px;
+            &:focus{
+                outline: none;
+            }
         }
 
         .login-button {

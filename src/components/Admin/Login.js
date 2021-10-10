@@ -1,24 +1,30 @@
 import Layout from "../GeneralComponents/layout";
 import React from 'react'
 import "../../styles/login.scss"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { singInWithEmailAndPass } from "../../database/auth";
 
 function Login() {
-    const [datosUsuario, setdatosUsuario] = useState({nombre: '', contraseña: ''})
-
+    const [datosUsuario, setdatosUsuario] = useState({email: '', password: ''})
+    
     const handleInputChange = (e) => {
         setdatosUsuario({...datosUsuario, [e.target.name] : e.target.value})
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await singInWithEmailAndPass(datosUsuario.email, datosUsuario.password)
     }
 
     return (
         <Layout>
             <div className="login-section">
-                <div className="login-container-info">
+                <form onSubmit={handleSubmit} className="login-container-info">
                     <h2>Iniciar sesión</h2>
-                    <input className="login-input" autoComplete='off' name="usuario" onChange={handleInputChange} placeholder="Usuario"></input>
-                    <input className="login-input" type='password' autoComplete='off' name="contraseña" onChange={handleInputChange} placeholder="Contraseña"></input>
-                    <button className="login-button">Entrar</button>
-                </div>
+                    <input required className="login-input" type='email' autoComplete='off' name="email" onChange={handleInputChange} placeholder="email"></input>
+                    <input required className="login-input" type='password' autoComplete='off' name="password" onChange={handleInputChange} placeholder="Contraseña"></input>
+                    <button type='submit' className="login-button">Entrar</button>
+                </form>
             </div>
         </Layout>
     )

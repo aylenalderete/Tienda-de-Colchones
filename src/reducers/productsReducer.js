@@ -1,7 +1,8 @@
 import { DELETE_PRODUCT, SET_ALL_PRODUCTS, UPDATE_PRODUCT, SET_NEW_PRODUCT} from "../constants/productConstans";
 
 const userReducerInitialState = {
-    allProducts: []
+    allProducts: [],
+    isLogged: false
 }
 
 const userReducers = (state = userReducerInitialState, {type, payload}) => {
@@ -26,6 +27,7 @@ const userReducers = (state = userReducerInitialState, {type, payload}) => {
                 ...state,
                 allProducts: state.allProducts.filter((el) => el.doc_id !== payload)
             }
+        
         default:
             return state
     }

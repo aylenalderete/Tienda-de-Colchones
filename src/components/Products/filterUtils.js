@@ -62,3 +62,52 @@ function addDescription({item, size, weight, sensation, ideal}){
     }
     return {...item, propDescription: description}
 }
+
+function removeAccents(str){
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+} 
+
+function searchValueRecursived(obj, val){
+    for (const key in obj) {
+        const el = obj[key]
+        if(typeof el === 'object'){
+            return searchValueRecursived(el, val)
+        }else if(removeAccents(el).toLowerCase() === val){
+            return true
+        }
+    }
+}
+
+export const filterSearchBar = (prods, search) => {
+    let words = search.toLowerCase().split(' ').map((el) => removeAccents(el))   
+    let temp = prods.map((prod) => {
+        let occurrences = 0
+        let sentence = ''
+        for (const searchWord of words) {    
+            sentence += searchWord + ' '
+            const prodsWords = JSON.stringify(prod, (key,value) => ['images', 'doc_id'].includes(key) ? '' : value).split(' ')
+            for (const Word of prodsWords) {
+                if(removeAccents(Word).toLowerCase().includes(searchWord)){
+                    occurrences++
+                    if(removeAccents(Word).toLowerCase().includes(searchWord)){
+                        occurrences+= sentence.length
+                    }
+                }
+            }
+            if(!sentence) continue
+            for (const key in prod) {
+                if(['images', 'doc_id'].includes(key)) continue
+                const el = prod[key]
+                if(typeof el === 'object'){
+                    const result = searchValueRecursived(el, sentence.trim())
+                    if(result) occurrences+= sentence.length * 3
+                }else if(removeAccents(el).toLowerCase() === sentence.trim()){
+                    occurrences+= sentence.length * 3
+                }  
+            }
+        }
+        return {prod, occurrences}
+    }, [])
+    temp.sort((a, b) => b.occurrences - a.occurrences)    
+    return temp.filter(el => el.occurrences > 0).map((el) => el.prod)
+}

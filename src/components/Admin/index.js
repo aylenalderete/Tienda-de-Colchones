@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Layout, { Grid } from "../GeneralComponents/layout";
 import adminSlider from '../../assets/adminSlider.png'
 import image33 from "../../assets/image 33.png"
@@ -12,17 +11,31 @@ import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
 import Swal from "sweetalert2";
 import { useHistory, useLocation } from "react-router";
 import queryString from 'query-string';
+import { useEffectAsync } from "../../utils/hooks";
+import { SET_LOGED_ACTIVE } from "../../constants/userConstants";
+import Login from "./Login";
+import { auth } from "../../config/firebase";
 
 const AdminView = () => {
     const {allProducts} = useSelector(state => state.products)
+    const {isLogged} = useSelector(state => state.user)
     const dispatch = useDispatch()
     const history = useHistory()
     const location = useLocation()
     const {section} = queryString.parse(location.search)
 
-    useEffect(() => {
-        getAllProducts()
-        .then((prods) => dispatch({type: SET_ALL_PRODUCTS, payload: prods}))
+    const loadProducts = async () => {
+        Swal.fire('Cargando...')
+        Swal.showLoading()
+        const prods = await getAllProducts()
+        dispatch({type: SET_LOGED_ACTIVE, payload: true})
+        dispatch({type: SET_ALL_PRODUCTS, payload: prods})
+        Swal.hideLoading()
+        Swal.close()
+    }
+
+    useEffectAsync(async () => {
+        auth.onAuthStateChanged((currentUser) => currentUser && loadProducts())
     }, [])
 
     const sectionHelper = {
@@ -50,6 +63,10 @@ const AdminView = () => {
             Swal.hideLoading()
             Swal.close()
         }
+    }
+
+    if(!isLogged){
+        return <Login />
     }
 
     return (

@@ -1,7 +1,7 @@
 import { SET_LOGED_ACTIVE } from "../constants/userConstants";
 
 const userReducerInitialState = {
-    currentUser: {}
+    isLogged: false
 }
 
 const userReducers = (state = userReducerInitialState, {type, payload}) => {
@@ -9,7 +9,7 @@ const userReducers = (state = userReducerInitialState, {type, payload}) => {
         case SET_LOGED_ACTIVE:
             return {
                 ...state,
-                currentUser: payload
+                isLogged: payload || false
             }
         default:
             return state

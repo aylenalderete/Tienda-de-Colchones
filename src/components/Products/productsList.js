@@ -5,7 +5,7 @@ import Loading from "../GeneralComponents/loading";
 import {getAllProducts} from '../../database/product'
 import { useHistory, useLocation} from "react-router-dom"
 import queryString from 'query-string';
-import { filterItems } from "./filterUtils";
+import { filterItems, filterSearchBar } from "./filterUtils";
 import '../../styles/productList.scss'
 
 const ProductsList = ({maxItems}) => {
@@ -17,11 +17,6 @@ const ProductsList = ({maxItems}) => {
     const params = queryString.parse(location.search)
     const topRef = useRef(null)
 
-    function removeAccents(str){
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    } 
-    
-
     useEffect(() => {
         getAllProducts()
         .then((prods) => {
@@ -29,30 +24,17 @@ const ProductsList = ({maxItems}) => {
                 const itemsFiltered = filterItems(prods, params)                        
                 setProductsFiltered(itemsFiltered)
                 setLoading(false)
-            // } else if (params.search) {
-            //     let words = params.search.toLowerCase().split(' ').map((el) => removeAccents(el))
-
-            //     function predicate(str){
-            //         if(words.some((w) => removeAccents(str.toLowerCase().includes(w)))){
-            //             return true
-            //         } else return false
-            //     }
-            //     function predicate2(val){
-            //         if(JSON.stringify(val).replace(/([.*,+?^=!:${}()|\[\]\/\\])/g, ' ').split(' ').replace(/([.*,+?^=!:${}()|\[\]\/\\])/g, ' ').some(predicate)){
-            //             return true
-            //         } else return false
-            //     }
-
-            //     let temp = prods.filter((prod) => Object.values(prod).some(predicate2))
-            //     setProducts(temp)
-            //     setLoading(false)
+            } else if (params.search) {
+                const itemsFiltered = filterSearchBar(prods, params.search)            
+                setProducts(itemsFiltered)
+                setLoading(false)
             } else {
                 setLoading(false)
                 setProducts(prods)
             }
         })
         .catch((error) => setLoading(false))
-    }, [])
+    }, [params.filterSteps, params.search])
     
     useEffect(() => (
         params?.filterSteps && setTimeout(() => window.scrollTo({ top: topRef.current.offsetTop, behavior: 'smooth' }), 200) 
@@ -74,6 +56,7 @@ const ProductsList = ({maxItems}) => {
                 <Grid height='22rem'>
                     {productsFiltered[type].map((el) => (
                         <Card
+                            imgStyle={{width: '220px'}}
                             style={{width: '220px', textAlign: 'center'}}
                             description={el.propDescription} 
                             descriptionMaxLength={el.propDescription.length}
@@ -99,6 +82,8 @@ const ProductsList = ({maxItems}) => {
                         .slice(0, maxItems)
                         .map((el) => (
                             <Card 
+                                imgStyle={{width: '220px'}}
+                                style={{width: '220px', textAlign: 'center'}}
                                 cardAction={() => history.push(`/product/${el.doc_id}`)}
                                 key={el.doc_id}
                                 img={el.images}

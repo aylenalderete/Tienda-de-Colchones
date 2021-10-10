@@ -1,22 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "../../styles/GeneralComponents/layout.scss"
-// import 'animate.css';
 
-function Navlinks() {
+function Navlinks({open}) {           
     return (
-        <ul className="navlinks-container animate__slideInDown">
+        <ul className={`navlinks-container ${open && 'animate__slideInDown'}`}>
             <li>
-                <a href="/">Inicio</a>
+                <Link to="/">Inicio</Link>
             </li>
             <li>
-                <a href="/productos">Productos</a>
+                <Link to="/productos">Productos</Link>
             </li>
             <li>
-                <a href="/ContactoMayorista">Contacto mayorista</a>
+                <Link to="/ContactoMayorista">Contacto mayorista</Link>
             </li>
-            <li>
-                <a href="/login">Iniciar sesión</a>
-            </li>  
         </ul>
     )
 }
