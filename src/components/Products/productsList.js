@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Card from "../GeneralComponents/card";
 import { Grid } from "../GeneralComponents/layout";
-import { useHistory } from "react-router-dom"
 import Loading from "../GeneralComponents/loading";
 import {getAllProducts} from '../../database/product'
 import { useHistory, useLocation} from "react-router-dom"
