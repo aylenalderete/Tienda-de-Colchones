@@ -11,10 +11,10 @@ import { SET_ALL_PRODUCTS } from "../../constants/productConstans";
 import Swal from "sweetalert2";
 import { useHistory, useLocation } from "react-router";
 import queryString from 'query-string';
-import { useEffectAsync } from "../../utils/hooks";
 import { SET_LOGED_ACTIVE } from "../../constants/userConstants";
 import Login from "./Login";
 import { auth } from "../../config/firebase";
+import { useEffect } from "react";
 
 const AdminView = () => {
     const {allProducts} = useSelector(state => state.products)
@@ -34,7 +34,7 @@ const AdminView = () => {
         Swal.close()
     }
 
-    useEffectAsync(async () => {
+    useEffect(() => {
         auth.onAuthStateChanged((currentUser) => currentUser && loadProducts())
     }, [])
 
