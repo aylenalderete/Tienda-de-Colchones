@@ -166,7 +166,7 @@ const ProductForm = () => {
                         <div className="variants__items">
                         {productData.variants.map(({size, price }, i) => (
                             <>
-                                <span onClick={() => handleRemoveVariant(i)}>
+                                <span key={i} onClick={() => handleRemoveVariant(i)}>
                                     {size} - ${price}<FaTimesCircle />
                                 </span>
                             </>
@@ -176,7 +176,7 @@ const ProductForm = () => {
                         <select name='size' value={variant.size} onChange={handleVariantChange}>
                             <option value='' disabled>Seleccione una opcion</option>
                             {variantSelect.items.map((item) => (
-                                <option value={item}>{item}</option>
+                                <option key={item} value={item}>{item}</option>
                             ))}
                         </select> 
                         <input autoComplete='off' value={variant.price} type='number' name="price" onChange={handleVariantChange} placeholder="Precio"></input>                
@@ -191,9 +191,9 @@ const ProductForm = () => {
                     </label>
                     <div className="imagesContainer" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
                         {renderImages().map((src, i) => (
-                            <div className="image"> 
+                            <div key={i} className="image"> 
                                 <FaTimesCircle onClick={() => removeImage(i)} />                               
-                                <img src={src} style={{margin: '5px'}} width={100} />
+                                <img alt={i} src={src} style={{margin: '5px'}} width={100} />
                             </div>
                         ))}
                     </div>

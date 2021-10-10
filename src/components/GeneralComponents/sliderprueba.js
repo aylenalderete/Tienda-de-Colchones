@@ -7,10 +7,10 @@ function Sliderprueba() {
     return (
         <div className="slider">
             <ul>
-                <li><img src={sliderprueba} /></li>
-                <li><img src={slider1} /></li>
-                <li><img src={slider2} /></li>
-                <li><img src={sliderprueba} /></li>
+                <li><img alt='slider_1' src={sliderprueba} /></li>
+                <li><img alt='slider_2' src={slider1} /></li>
+                <li><img alt='slider_3' src={slider2} /></li>
+                <li><img alt='slider_4' src={sliderprueba} /></li>
             </ul>
         </div>
     )

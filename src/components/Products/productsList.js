@@ -14,14 +14,14 @@ const ProductsList = ({maxItems}) => {
     const [loading, setLoading] = useState(true)
     const history = useHistory()
     const location = useLocation()
-    const params = queryString.parse(location.search)
+    const params = queryString.parse(location.search) || {}
     const topRef = useRef(null)
 
     useEffect(() => {
         getAllProducts()
         .then((prods) => {
             if (params.filterSteps){
-                const itemsFiltered = filterItems(prods, params)                        
+                const itemsFiltered = filterItems(prods, {size: params.size, weight: params.weight, sensation: params.sensation})                        
                 setProductsFiltered(itemsFiltered)
                 setLoading(false)
             } else if (params.search) {
@@ -34,11 +34,11 @@ const ProductsList = ({maxItems}) => {
             }
         })
         .catch((error) => setLoading(false))
-    }, [params.filterSteps, params.search])
+    }, [params.filterSteps, params.search, params.size, params.weight, params.sensation])
     
     useEffect(() => (
         params?.filterSteps && setTimeout(() => window.scrollTo({ top: topRef.current.offsetTop, behavior: 'smooth' }), 200) 
-    ), [loading])
+    ), [loading, params?.filterSteps])
 
     const titles = {
         'ideal': 'Productos ideales según tu busqueda: ',
@@ -47,9 +47,9 @@ const ProductsList = ({maxItems}) => {
         'sensation': 'Productos en cuanto al la sensación seleccionada: ',
     }
 
-    const renderItemsFiltered = (type) => {
+    const renderItemsFiltered = (type, i) => {
         return (
-            <div className='items-container' >
+            <div key={i} className='items-container' >
                 <div className="items-subtitle">
                     <h2>{titles[type]}</h2>
                 </div>
@@ -103,8 +103,8 @@ const ProductsList = ({maxItems}) => {
                 </div>
             )}
             {!loading && params.filterSteps && 
-                Object.keys(productsFiltered).map((type) => (
-                    productsFiltered[type].length > 0 && renderItemsFiltered(type)
+                Object.keys(productsFiltered).map((type, i) => (
+                    productsFiltered[type].length > 0 && renderItemsFiltered(type, i)
                 ))
             }
         </div>

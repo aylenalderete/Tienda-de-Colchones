@@ -80,7 +80,6 @@ export const uploadImagesProduct = async (productId, images) => {
         Swal.fire('Subiendo imagenes...')
         Swal.showLoading()   
         const imageUrls = []
-        console.log('subiendo imagenes...')
         for (let index = 0; index < images.length; index++) {
             const img = images[index];
             const url = await putFileFB(img, `/products/${productId}_${img.name}`)

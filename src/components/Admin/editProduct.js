@@ -16,7 +16,6 @@ const EditProduct = () => {
 
     const sendData = (e) => {
         e.preventDefault()
-        console.log(productData)
     }
 
     return (

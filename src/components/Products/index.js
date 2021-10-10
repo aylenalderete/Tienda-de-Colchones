@@ -9,7 +9,7 @@ function Products() {
         <Layout>
             <>
                 <div className="products-section_image-container">
-                    <img className="products-section_image" src={slider1}></img>
+                    <img alt='asd' className="products-section_image" src={slider1}></img>
                     <h1 className="products-section_title">Productos</h1>
                 </div>
                 <div>

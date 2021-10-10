@@ -1,12 +1,11 @@
-import { Link, NavLink } from 'react-router-dom';
-import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 import SuaveStarIcon from '../../assets/suavestarIcon.png'
 import { HiMenu } from 'react-icons/hi'
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
 import WhatsappButton from './whatsappButton';
 import Navlinks from './navlinks';
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import { useSelector } from 'react-redux';
 import { logout } from '../../database/auth';
 
@@ -47,7 +46,7 @@ const Layout = ({
                 {icon && (
                     <div className="layout__header--iconContainer">
                         <Link to='/'>
-                            <img src={SuaveStarIcon} />
+                            <img alt='icon' src={SuaveStarIcon} />
                         </Link>
                     </div>
                 )}

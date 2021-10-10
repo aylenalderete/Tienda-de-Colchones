@@ -1,13 +1,10 @@
 import Layout from "../GeneralComponents/layout";
-import "../../styles/Home/sliderprueba.scss";
-import "../../styles/Home/home.scss";
 import Filter from "./filter"
-import CardsMenu from "./cardsMenu";
 import CardsMenu2 from "./cardsMenu2";
 import Sliderprueba from "../GeneralComponents/sliderprueba";
-import Card from "../GeneralComponents/card"
-import colchon from "../../assets/colchon1.png"
 import ProductsList from "../Products/productsList";
+import "../../styles/Home/sliderprueba.scss";
+import "../../styles/Home/home.scss";
 
 
 const Home = () => {

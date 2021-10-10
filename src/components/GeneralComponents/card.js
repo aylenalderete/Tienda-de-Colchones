@@ -3,6 +3,7 @@ import '../../styles/GeneralComponents/card.scss'
 const Card = ({
     img = '',
     title = '',
+    key='',
     description = '',
     descriptionMaxLength = 50,
     price = '',
@@ -21,7 +22,7 @@ const Card = ({
     }
 
     return (
-        <div className="card__container" style={style} onClick={cardAction}>
+        <div key={key} className="card__container" style={style} onClick={cardAction}>
             {img && (
                 <div className="card__img--container">
                     <img style={imgStyle} src={img} alt='Imagen'/>
@@ -45,7 +46,7 @@ const Card = ({
             {buttons.length > 0 && (
                 <div className="card__buttons--container">
                     {buttons.map(({label, action}) => (
-                        <button className="card__buttons" onClick={() => action()}>
+                        <button key={label} className="card__buttons" onClick={() => action()}>
                             {label}
                         </button>
                     ))}

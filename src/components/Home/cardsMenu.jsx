@@ -1,7 +1,6 @@
 import React from 'react'
 import colchon1 from "../../assets/colchon1.png"
 import "../../styles/Home/cardsmenu.scss"
-import { Grid } from '../GeneralComponents/layout'
 
 
 function CardsMenu() {
@@ -10,7 +9,7 @@ function CardsMenu() {
 
             <div className="card-column">
                 <div className="container-column-img">
-                    <img className="column-img" src={colchon1} />
+                    <img alt='card1' className="column-img" src={colchon1} />
                 </div>
                 <div className="container-column-text">
                     <p>La mejor tecnología: Colchones Fisher</p>
@@ -19,7 +18,7 @@ function CardsMenu() {
             </div>
             <div className="card-column">
                 <div className="container-column-img">
-                    <img className="column-img" src={colchon1} />
+                    <img alt='card2' className="column-img" src={colchon1} />
                 </div>
                 <div className="container-column-text">
                     <p>¿Te gustaría vender nuestros productos?</p>

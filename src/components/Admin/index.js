@@ -72,7 +72,7 @@ const AdminView = () => {
     return (
         <Layout searchBar={false}>
             <div className="admin-section_image-container">
-                <img className="admin-section_image" src={adminSlider}></img>
+                <img alt='AdminHeader' className="admin-section_image" src={adminSlider}></img>
                 <h1 className="admin-section_title">Panel del administrador</h1>        
             </div>
             {section && (

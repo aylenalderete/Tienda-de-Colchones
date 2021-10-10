@@ -13,7 +13,7 @@ const normalizePath = (path) => {
 
 export const createDocument = async (path, data) => {
     try {
-        if(!data) throw 'Pls enviame la data'
+        if(!data) return alert('createDocument => Pls enviame la data')
         await db.doc(path).set(data)
     } catch (err) {
         alert('Error al crear')
@@ -23,7 +23,7 @@ export const createDocument = async (path, data) => {
 
 export const updateDocument = async (path, data) => {
     try {
-        if(!data) throw 'Pls enviame la data'
+        if(!data) return alert('updateDocument => Pls enviame la data')
         await db.doc(normalizePath(path)).update(data)
     } catch (err) {
         alert('Error al actualizar')
@@ -61,7 +61,6 @@ export const getCollection = async (path) => {
 
 export const getDocId = (collectionPath) => {
     collectionPath = normalizePath(collectionPath)
-    console.log(db)
     const id =  db.collection(collectionPath).doc().id
     return {id, collectionPath}
 }
