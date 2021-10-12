@@ -6,9 +6,12 @@ import Mayoristas from './components/Mayoristas';
 import AdminView from './components/Admin';
 import Product from './components/Product';
 import Login from './components/Admin/Login';
+import { useEffect } from 'react';
+import { saveEvent } from './database/analytics';
 
 
 function App() {
+  useEffect(() => saveEvent('Visit'),[])
   return (
     <BrowserRouter>
       <Switch>

@@ -76,7 +76,7 @@ const ProductsList = ({maxItems}) => {
     return (
         <div className='container' ref={topRef} >
             {loading && ( <Loading />)}
-            {!loading && !params?.filterSteps && (
+            {!loading && !params?.filterSteps && products.length > 0 && (
                 <Grid height='22rem'>
                     {products
                         .slice(0, maxItems)

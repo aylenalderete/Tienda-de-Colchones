@@ -6,7 +6,6 @@ import ProductsList from "../Products/productsList";
 import "../../styles/Home/sliderprueba.scss";
 import "../../styles/Home/home.scss";
 
-
 const Home = () => {
     return (
         <Layout>

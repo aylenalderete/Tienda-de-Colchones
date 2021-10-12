@@ -12,7 +12,8 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
-const fb = firebase.initializeApp(firebaseConfig, 'GoodMorning');
-export const auth = firebase.auth(fb);
-export const db = fb.firestore(fb);
-export const storage = firebase.storage(fb).ref()
+const app = firebase.initializeApp(firebaseConfig, 'GoodMorning');
+export const auth = firebase.auth(app);
+export const db = app.firestore(app);
+export const storage = firebase.storage(app).ref()
+export const analytics = firebase.analytics(app)
