@@ -7,18 +7,27 @@ import "../../styles/Home/sliderprueba.scss";
 import "../../styles/Home/home.scss";
 
 const Home = () => {
+    const getItemQuantity = () => {
+        if(window.screen.width < 560){
+            return 3
+        } else if (window.screen.width < 850){
+            return 4
+        } else {
+            return 6
+        }
+    }
     return (
         <Layout>
             <div className="homeContainer">
                 <Sliderprueba />
-                <CardsMenu2 />
                 <Filter />
+                <CardsMenu2 />
                 <section className="cards-container-products">
                     <div>
                         <h1 className="home-title">Productos destacados</h1>
                     </div>
                     <div className="home-productsList_container">
-                        <ProductsList maxItems={6} />
+                        <ProductsList maxItems={getItemQuantity()} />
                     </div>
                 </section>
             </div>

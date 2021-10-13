@@ -19,7 +19,7 @@ const filterSensation = (arr, val) => {
 
 
 export const filterItems = (prods, {size, weight, sensation}) => {
-    let sizeFiltered = [], weightFiltered = [], sensationFiltered = [], itemsFiltered = []
+    let sizeFiltered = [], weightFiltered = [], sensationFiltered = [], itemsFiltered = null
     if(size) {
         let val = size.includes(',') ? size.split(',') : [size]
         sizeFiltered = filterSize(prods, val)
@@ -27,7 +27,7 @@ export const filterItems = (prods, {size, weight, sensation}) => {
     } 
 
     if(weight){
-        const [idealWeights, allWeights] = filterWeigth(prods, weight)
+        const [idealWeights, allWeights] = filterWeigth(itemsFiltered || prods, weight)
         weightFiltered = [...allWeights]
         itemsFiltered = [...idealWeights]
     } 

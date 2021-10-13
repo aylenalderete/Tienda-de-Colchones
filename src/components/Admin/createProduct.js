@@ -165,11 +165,9 @@ const ProductForm = () => {
                         <h5>Variantes</h5>
                         <div className="variants__items">
                         {productData.variants.map(({size, price }, i) => (
-                            <>
-                                <span key={i} onClick={() => handleRemoveVariant(i)}>
-                                    {size} - ${price}<FaTimesCircle />
-                                </span>
-                            </>
+                            <span key={i} onClick={() => handleRemoveVariant(i)}>
+                                {size} - ${price}<FaTimesCircle />
+                            </span>
                         ))}
                         </div>
                         <p>{variantSelect.label}</p>
