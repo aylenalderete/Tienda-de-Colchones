@@ -11,7 +11,7 @@ function Filter() {
         if (filtros.includes(e.target.id)) {
             let index = filtros.indexOf(e.target.id);
             filtros.splice(index, 1);
-        } else if(filterType === 'weight') {
+        } else if(filterType === 'weight' || filterType === 'size') {
             filtros = [e.target.id]
         } else {
             filtros.push(e.target.id)
