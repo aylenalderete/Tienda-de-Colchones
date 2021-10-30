@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SuaveStarIcon from '../../assets/suavestarIcon.png'
+import durmili from '../../assets/durmili.jpeg'
 import { HiMenu } from 'react-icons/hi'
 import '../../styles/GeneralComponents/layout.scss'
 import { useState } from 'react';
@@ -46,7 +46,7 @@ const Layout = ({
                 {icon && (
                     <div className="layout__header--iconContainer">
                         <Link to='/'>
-                            <img alt='icon' src={SuaveStarIcon} />
+                            <img alt='icon' src={durmili} />
                         </Link>
                     </div>
                 )}

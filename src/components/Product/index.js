@@ -52,7 +52,7 @@ function Product() {
                 </div>
                 <div className="info-container">
                     <h1 style={{marginBottom:'1%', fontSize: '22px'}}>{product.nombre}</h1>
-                    <h2 style={{marginTop:'3%', color: '#418fde'}}>${ product.variants[priceActive].price }</h2>
+                    <h2 style={{marginTop:'3%', color: '#04989e'}}>${ product.variants[priceActive].price }</h2>
                     <p style={{marginBottom:'1%'}}>Descripción:</p>
                     <p style={{marginTop:'1%', marginBottom:'1%'}}>{product.descripcion}.</p>
                     <p>Este producto soporta {product.peso} y su tipo de sensación es de {product.sensacion}.</p>

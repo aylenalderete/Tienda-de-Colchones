@@ -8,7 +8,7 @@
   },
   "hosting": {
     "public": "build",
-    "site": "goodmorning-staging",
+    "site": "durmili",
     "ignore": [
       "firebase.json",
       "**/.*",

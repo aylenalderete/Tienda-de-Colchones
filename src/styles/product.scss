@@ -48,7 +48,7 @@
         }
 
         .button {
-            background-color: #418fde;
+            background-color: #04989e;
             color: #f4f5f5;
             font-weight: 600;
             font-size: 15px;
@@ -103,6 +103,9 @@
 	width: 100%;
 	overflow: hidden;
 	position: relative;
+    ul{
+        margin-top: 0;
+    }
 }
 
 .slider__content,
