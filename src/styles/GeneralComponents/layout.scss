@@ -48,13 +48,22 @@
         align-items: center;
         padding: 0% 3%;
         height: 80px;
+        .layout__footer--createdBy,
         .layout__footer--socialIcons,
         .layout__footer--links{
             width: 40%;
             display: flex;
             justify-content: space-around;
+            
             a{
                 color: white;
+            }
+            small{
+                color: #ffff;
+                a{
+                    color: #ffff;
+                    text-decoration: underline;
+                }
             }
         }
         .layout__footer--socialIcons{
@@ -185,6 +194,9 @@
 
     }
     .layout__footer {
+        flex-direction: column;
+        justify-content: space-evenly;
+        .layout__footer--createdBy,        
         .layout__footer--socialIcons,
         .layout__footer--links{
             width: 100%;

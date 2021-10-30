@@ -21,8 +21,7 @@ const Layout = ({
     const [inputValue, setInputValue] = useState('')
     const [burgerStatus, setBurgerStatus] = useState({active: false, open: false})    
     const history = useHistory()
-
-
+    
     const handleKeyDown = ({ keyCode }) => {
         if (keyCode !== 13) return null;
         else {     
@@ -95,7 +94,7 @@ const Layout = ({
                 {children}
             </section>
             <div>
-            <WhatsappButton />
+                <WhatsappButton />
             </div>
             <footer className='layout__footer'>
                 <div className="layout__footer--links">
@@ -108,6 +107,11 @@ const Layout = ({
                     <Link to='/ContactoMayorista'>
                         Contacto mayorista
                     </Link>
+                </div>
+                <div className="layout__footer--createdBy">
+                    <small>
+                        Hecho por: <a rel='noreferrer' target="_blank" href='https://www.linkedin.com/in/aylenalderete/'>Aylén Alderete</a>
+                    </small>
                 </div>
             </footer>
         </main>
