@@ -56,7 +56,7 @@ const ProductsList = ({maxItems}) => {
                 <Grid height='22rem'>
                     {productsFiltered[type].map((el) => (
                         <Card
-                            imgStyle={{width: '220px'}}
+                            imgStyle={{width: '220px', height: '125px'}}
                             style={{width: '220px', textAlign: 'center'}}
                             description={el.propDescription} 
                             descriptionMaxLength={el.propDescription.length}
@@ -82,7 +82,7 @@ const ProductsList = ({maxItems}) => {
                         .slice(0, maxItems)
                         .map((el) => (
                             <Card 
-                                imgStyle={{width: '220px'}}
+                                imgStyle={{width: '220px', height: '125px'}}
                                 style={{width: '220px', textAlign: 'center'}}
                                 cardAction={() => history.push(`/product/${el.doc_id}`)}
                                 key={el.doc_id}

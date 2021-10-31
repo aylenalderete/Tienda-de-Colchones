@@ -12,8 +12,12 @@ const Home = () => {
             return 3
         } else if (window.screen.width < 850){
             return 4
-        } else {
+        } else if (window.screen.width <= 1130){
             return 6
+        } else if (window.screen.width <= 1420){
+            return 8
+        } else {
+            return 10
         }
     }
     return (
