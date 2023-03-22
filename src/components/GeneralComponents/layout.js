@@ -40,82 +40,101 @@ const Layout = ({
     }
 
     return (
-        <main className="layout__main">
-            <header className='layout__header'>
-                {icon && (
-                    <div className="layout__header--iconContainer">
-                        <Link to='/'>
-                            <img alt='icon' src={durmili} />
-                        </Link>
-                    </div>
-                )}
-                {nav && (
-                    <nav className="layout__header--navContainer">
-                        <li>
-                            <ul className="layout__header--navContainer_ul"><Link to='/'>Inicio</Link></ul>
-                        </li>
-                        <li>
-                            <ul className="layout__header--navContainer_ul"><Link to='/productos'>Productos</Link></ul>
-                        </li>
-                        <li>
-                            <ul className="layout__header--navContainer_ul"><Link to='/ContactoMayorista'>Contacto mayorista</Link></ul>
-                        </li>
-                        {isLogged && (
-                            <>
-                                <li>
-                                    <ul className="layout__header--navContainer_ul"><Link to='/admin'>Admin</Link></ul>
-                                </li>
-                                <li>
-                                    <ul onClick={() => logout()} className="layout__header--navContainer_ul">Cerrar sesión</ul>
-                                </li>
-                            </>
-                        )}
-                    </nav>
-                )}
-                {searchBar && (
-                    <div className="layout__header--SearchBarContainer">
-                        <input 
-                            type="search"
-                            placeholder='¿Qué está buscando?'
-                            onChange={({target:{value}}) => setInputValue(value)} 
-                            onKeyDown={handleKeyDown}
-                            value={inputValue}
-                        />
-                    </div>
-                )}
-                {
-                    <div tabIndex="0" onBlur={() => burgerOpen (false)} className="menu-btn">
-                        <HiMenu onClick={()=>burgerOpen (!burgerStatus.active)} className="menu-btn__burger "/>
-                    </div>
-                }
-                { burgerStatus.active && <Navlinks open={burgerStatus.open} />}
-            </header>
-            <section className='layout__section'>
-                {children}
-            </section>
-            <div>
-                <WhatsappButton />
+      <main className="layout__main">
+        <header className="layout__header">
+          {icon && (
+            <div className="layout__header--iconContainer">
+              <Link to="/">
+                <img alt="icon" src={durmili} />
+              </Link>
             </div>
-            <footer className='layout__footer'>
-                <div className="layout__footer--links">
-                    <Link to='/'>
-                        Inicio
-                    </Link>
-                    <Link to='/productos'>
-                        Productos
-                    </Link>
-                    <Link to='/ContactoMayorista'>
-                        Contacto mayorista
-                    </Link>
-                </div>
-                <div className="layout__footer--createdBy">
-                    <small>
-                        Hecho por: <a rel='noreferrer' target="_blank" href='https://www.linkedin.com/in/aylenalderete/'>Aylén Alderete</a>
-                    </small>
-                </div>
-            </footer>
-        </main>
-    )
+          )}
+          {nav && (
+            <nav className="layout__header--navContainer">
+              <li>
+                <ul className="layout__header--navContainer_ul">
+                  <Link to="/">Inicio</Link>
+                </ul>
+              </li>
+              <li>
+                <ul className="layout__header--navContainer_ul">
+                  <Link to="/productos">Productos</Link>
+                </ul>
+              </li>
+              <li>
+                <ul className="layout__header--navContainer_ul">
+                  <Link to="/ContactoMayorista">Contacto mayorista</Link>
+                </ul>
+              </li>
+              {isLogged && (
+                <>
+                  <li>
+                    <ul className="layout__header--navContainer_ul">
+                      <Link to="/admin">Admin</Link>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul
+                      onClick={() => logout()}
+                      className="layout__header--navContainer_ul"
+                    >
+                      Cerrar sesión
+                    </ul>
+                  </li>
+                </>
+              )}
+            </nav>
+          )}
+          {searchBar && (
+            <div className="layout__header--SearchBarContainer">
+              <input
+                type="search"
+                placeholder="¿Qué está buscando?"
+                onChange={({ target: { value } }) => setInputValue(value)}
+                onKeyDown={handleKeyDown}
+                value={inputValue}
+              />
+            </div>
+          )}
+          {
+            <div
+              tabIndex="0"
+              onBlur={() => burgerOpen(false)}
+              className="menu-btn"
+            >
+              <HiMenu
+                onClick={() => burgerOpen(!burgerStatus.active)}
+                className="menu-btn__burger "
+              />
+            </div>
+          }
+          {burgerStatus.active && <Navlinks open={burgerStatus.open} />}
+        </header>
+        <section className="layout__section">{children}</section>
+        <div>
+          <WhatsappButton />
+        </div>
+        <footer className="layout__footer">
+          <div className="layout__footer--links">
+            <Link to="/">Inicio</Link>
+            <Link to="/productos">Productos</Link>
+            <Link to="/ContactoMayorista">Contacto mayorista</Link>
+          </div>
+          <div className="layout__footer--createdBy">
+            <small>
+              Hecho por:{" "}
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://www.linkedin.com/in/cristiansmorales"
+              >
+                Cristian Morales
+              </a>
+            </small>
+          </div>
+        </footer>
+      </main>
+    );
 }
 
 export default Layout;
